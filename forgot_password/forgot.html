@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <title>Forgot Password?</title>
+</head>
+<body>
+
+    <header class="bg-[#154e49] py-2">
+        <nav class="w-[95%] mx-auto">
+            <div class="">
+                <a class="flex text-white hover:text-[#FBB04B] active:text-[#FBB04B]"
+                href="../index.html">
+                    <ion-icon name="arrow-round-back" size="large"></ion-icon>
+                </a>               
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="flex flex-col justify-center items-center">
+            
+            <form action="" id="forgot-form" class="mt-5">
+                <h2 class="lg:text-4xl text-2xl font-bold text-[#154e49]">Forgot Password?</h2>
+                <div class="relative mt-5 mx-2 text-red-500" id="forgot-msg"></div>
+
+                <div id="input-field" class="relative w-full max-w-96 my-3 mx-0 h-14 grid py-0 px-2">
+
+                    <input type="email" name="forgot-email" id="forgot-email" placeholder=" "
+                        class="block py-2.5 px-0 appearance-none text-base text-gray-900 bg-transparent border-0 border-b-2 border-[#7db3ae]  focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+
+                    <label for="forgot-email"
+                        class="absolute text-[#7db3ae]  font-bold  duration-300 transform -translate-y-6 scale-75 top-5  origin-[0]  left-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 peer-focus:font-semibold">Email</label>
+
+                </div>
+    
+                <button type="submit" id="log-in-btn"
+                    class="w-fit bg-[#154e49]  py-3 px-10 my-3 rounded-full text-white font-bold">Submit</button>
+
+            </form>
+        </div>
+    </main>
+  
+
+    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    
+</body>
+</html>

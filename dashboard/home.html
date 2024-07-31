@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <title>Home</title>
+</head>
+
+<body>
+    <header class="bg-[#154e49] py-2">
+        <nav class="flex justify-between items-center w-[95%] mx-auto">
+            <div class="w-1/2 md:w-auto">
+                <a class="hover:underline text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
+                href="../dashboard/home.html">
+                <img src="../images/logo4.png" alt="Logo" class="md:w-80 w-40">
+                </a>
+            </div>
+
+            <div id="slideover-bg" class="absolute inset-0 w-full h-full bg-gray-900 opacity-0 invisible"></div>
+
+            <div
+                class="hidden nav-links md:static absolute bg-[#154e49] md:min-h-fit min-h-[60vh] right-0 top-0 md:w-auto w-1/2 h-full md:flex items-center px-5">
+                <ul class="flex md:flex-row flex-col mt-20 md:mt-0 md:items-center md:gap-16 gap-8">
+                    <li>
+                        <a class="hover:underline text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
+                            href="../dashboard/home.html">Home</a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
+                            href="../report/report.html">Report</a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
+                            href="../leaderboard/leaderboard.html">LeaderBoard</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="flex items-center gap-6 ">
+                <button id="buy-btn"
+                    class="w-fit text-xs md:text-base flex text-[#154e49] py-2 px-3 rounded-full bg-white font-bold">Buy
+                    Premium
+                    <img src="../images/crown.png" alt="" class="md:w-8 w-5"></button>
+                <ion-icon onclick="onToggleMenu(this)" name="menu"
+                    class="z-50 text-3xl cursor-pointer md:hidden text-white"></ion-icon>
+            </div>
+        </nav>
+    </header>
+
+    <main class="z-1">
+        
+        <div class=" text-red-500 mx-24 md:mx-40 mt-10 font-bold text-sm md:text-base" id="msg"></div>
+        <div class="add-expense flex flex-col justify-center items-center overflow-hidden">
+
+            <form id="add-expense-form" 
+                class="flex md:items-center md:flex-row flex-col md:gap-20 gap-5 border-2 border-x-4 drop-shadow-lg rounded-lg border-[#154e49] py-3 px-10">
+                
+                
+                
+                <div class="flex items-center md:gap-3 gap-8">
+                    <label for="amount" class="text-[#154e49] font-semibold md:font-bold  md:text-base text-sm">Amount</label>
+                    <input id="amount" class="text-[#154e49] bg-gray-50 border border-gray-200 rounded-md inline-block w-full"
+                        type="number">
+                </div>
+                <div class="flex items-center gap-3">
+                    <label for="description"
+                        class="text-[#154e49] font-semibold md:font-bold  md:text-base text-sm">Description</label>
+                    <input id="description" class="text-[#154e49]  bg-gray-50 border border-gray-200 rounded-md inline-block w-full"
+                        type="text">
+                </div>
+                <div class="flex items-center md:gap-3 gap-7">
+                    <label for="category"
+                        class="text-[#154e49] font-semibold md:font-bold  md:text-base text-sm">Category</label>
+                    <select id="category" class="text-[#154e49]  bg-gray-50 border border-gray-200 rounded-md inline-block w-full">
+                        <option selected>Select</option>
+                        <option value="food">Food</option>
+                        <option value="fuel">Fuel</option>
+                        <option value="electircity">Electricity</option>
+                        <option value="fun">Fun</option>
+                        <option value="family">Family</option>
+                    </select>
+                </div>
+                <button type="submit"
+                    class="w-fit text-white py-2 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold md:text-base text-sm">ADD</button>
+            </form>
+        </div>
+
+
+
+        <div id="expenses-list-div"
+            class="overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl  drop-shadow-md ">
+
+            <table id="expenses-list" class="w-full text-sm  text-white text-center">
+                <thead class="uppercase text-xs bg-[#154e49]">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Category</th>
+                        <th scope="col" class="px-6 py-3">Amount</th>
+                        <th scope="col" class="px-6 py-3">Description</th>
+                        <th scope="col" class="px-6 py-3">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- <tr class="list-group-item odd:bg-white even:bg-[#799e9b] text-[#154e49] font-semibold  border-b">
+                        <td>HOme</td>
+                    </tr> -->
+                    
+                </tbody>
+
+
+            </table>
+
+            <nav class="mt-2 pt-4 flex flex-row flex-wrap items-center justify-between">
+                <ul class="flex items-center -space-x-px text-base h-8 bg-[#154e49] rounded-s-xl rounded-e-xl">
+                    <li>
+                        <a href="" class="flex items-center px-3 h-8 text-white border border-e-0 border-white ">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg></a>
+                    </li>
+                    <li>
+                        <a href="" class="flex items-center px-3 h-8 text-white border border-e-0 border-white">1</a>
+                    </li>
+                    <li>
+                        <a href="">1</a>
+                    </li>
+                    <li>
+                        <a href="">1</a>
+                    </li>
+                    <li>
+                        <a href="">1</a>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </div>
+
+    </main>
+
+  
+<script src="../hamburger/hamburger.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+<script src="main.js"></script>
+</body>
+
+</html>
