@@ -2,19 +2,72 @@ const amount = document.getElementById('amount');
 const desc = document.getElementById('description');
 const category = document.getElementById('category');
 const Eul = document.getElementById('expenses-list');
+const EulDiv = document.getElementById('expenses-list-div');
+const rzp_button=document.getElementById("buy-btn");
+const noExpenseRecords=document.getElementById('noExpenseRecords');
 
 const form = document.getElementById('add-expense-form');
 
-form.addEventListener('submit', onSubmit);
 
+form.addEventListener('submit', onSubmit);
+rzp_button.addEventListener('click',buyPremium);
 
 document.addEventListener('DOMContentLoaded', DomLoad);
+
+//token
+const token=localStorage.getItem('token');
+
+//DECODE
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
+
+
+//SHOW PREMIUM
+function showPremium(){
+    document.getElementById('premium_memb').classList.toggle('hidden');
+    rzp_button.classList.toggle('hidden');
+    document.getElementById("report-tab").removeEventListener('click',alertBuyPremium);
+    document.getElementById("leaderboard-tab").removeEventListener('click',alertBuyPremium);
+}
+
+
+//noRecordsAvailable
+function noRecordsAvailable(){
+    EulDiv.classList.toggle('hidden');
+    noExpenseRecords.classList.toggle('hidden');
+}
+
+//buyPremium alert
+function alertBuyPremium(e){
+    
+        alert('Premium Feature!! Please Buy subscrition');
+        e.preventDefault();
+    
+}
+
 
 //DOMLOAD
 async function DomLoad() {
     try{
-        
-            await getExpenses();
+
+        const decodedToken=parseJwt(token);
+
+        if(decodedToken.ispremiumuser==true){
+            showPremium();
+        }
+        else{
+            document.getElementById("report-tab").addEventListener('click',alertBuyPremium);
+            document.getElementById("leaderboard-tab").addEventListener('click',alertBuyPremium);
+        }
+
+        await getExpenses();
         
             // await showDownloadedFiles();
 
@@ -38,7 +91,7 @@ async function onSubmit(e) {
         }, 2000);
     } 
     else {
-        // const token=localStorage.getItem('token');
+        
             try{
                 expense={
                     amount:amount.value,
@@ -46,11 +99,11 @@ async function onSubmit(e) {
                     category:category.value
                 };
                 console.log(expense);
-                let response= await axios.post("http://localhost:3000/add-expense/",expense);
+                let response= await axios.post("http://localhost:3000/add-expense/",expense,{headers:{'Auth':token}});
                 console.log(response.data.newExpense);
-                // if(Eul.hidden){
-                //     Eul.hidden=false;
-                // }
+                if(EulDiv.classList.contains('hidden')){
+                   noRecordsAvailable();
+                }
                 showOnScreen(response.data.newExpense);
                 // showLeaderBoard();
                 
@@ -72,26 +125,14 @@ async function getExpenses(){
 
         
         // const token=localStorage.getItem('token');
-        const res = await axios.get('http://localhost:3000/get-expenses');
+        const res = await axios.get('http://localhost:3000/get-expenses',{headers:{'Auth':token}});
 
         const expenses=res.data;
-        console.log(res.data);
+        // console.log(res.data);
 
-        // localStorage.setItem('ispremiumuser',res.data.ispremiumuser);
-
-        // const ispremiumuser=localStorage.getItem('ispremiumuser');
-
-        // console.log(ispremiumuser);
-
-        // if(ispremiumuser!=null && ispremiumuser=='true'){
-        //     document.querySelector('h6').hidden=false;
-        //     leaderboard_button.hidden=false;
-        //     rzp_button.hidden=true;
-        // }
 
         if(expenses.length > 0){
-            // Eul.hidden=false;
-            // Eul.innerHTML='';
+            
             // noofrows.hidden=false;
 
             for (let i in expenses) {
@@ -102,8 +143,8 @@ async function getExpenses(){
             // showPagination(res.data.expense_Data);
         }
         else{
-          
-            // ExpensesH5.hidden=false;
+            EulDiv.classList.toggle('hidden');
+            noExpenseRecords.classList.toggle('hidden');
         } 
 
     }
@@ -119,13 +160,12 @@ async function removeExpense(id) {
     try{
         
         // const token=localStorage.getItem('token');
-        const data=await axios.delete(`http://localhost:3000/delete-expense/${id}`);
+        const data=await axios.delete(`http://localhost:3000/delete-expense/${id}`,{headers:{'Auth':token}});
         document.getElementById(id).remove();
         // console.log(data);
-        // if(Eul.empty){
-        //     ExpensesH5.hidden=false;
-        //     noofrows.hidden=true;
-        // }
+        if(Eul.rows.length<=1){
+            noRecordsAvailable();
+        }
         // showLeaderBoard();
                                  
     }
@@ -152,4 +192,55 @@ function showOnScreen(obj){
 
     // Eul.innerHTML=Eul.innerHTML+child;
     // Eul.scrollIntoView();
+}
+
+
+//BUY PREMIUM
+
+async function buyPremium (e){
+
+
+    // const token=localStorage.getItem('token');
+    const res = await axios.get('http://localhost:3000/buypremium',{headers:{'Auth':token}});
+
+    console.log(res.data.order.id);
+    var options ={
+        "key":res.data.key_id,
+        "order_id":res.data.order.id,
+        "handler": async function(res){
+            const result=await axios.post('http://localhost:3000/updateTransactions',{
+                order_id:options.order_id,
+                payment_id:res.razorpay_payment_id,
+                status:'successful'
+            },{headers:{'Auth':token}});
+
+        
+            alert('You are a Premium User Now');
+            showPremium();
+            localStorage.setItem('token', result.data.token);
+        },
+        "retry":{
+            enabled: false
+        }   
+    };
+    
+    var razorpayObject= new Razorpay(options);
+
+    razorpayObject.on('payment.failed',async (res)=>{
+        console.log(res);
+        const result=await axios.post('http://localhost:3000/updateTransactions',{
+            order_id:options.order_id,
+            payment_id:res.razorpay_payment_id,
+            status:'failed'
+        },{headers:{'Auth':token}});
+
+        alert('Something went wrong');
+    });
+    
+    console.log(razorpayObject);
+    razorpayObject.open();
+    e.preventDefault();
+
+
+
 }

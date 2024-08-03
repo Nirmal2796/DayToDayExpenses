@@ -1,6 +1,6 @@
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    
 
     const login_div = document.getElementById('formdiv');
     const login_form = document.querySelector('#login-form');
@@ -9,13 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const login_msg = document.getElementById('login-msg');
     const login_error = document.getElementById('login-error');
 
-    const signup_div = document.querySelector('#signup-div')
+    
     const signup_form = document.getElementById('signup-form');
     const signup_name = document.getElementById('signup-name');
     const signup_email = document.getElementById('signup-email');
     const signup_password = document.getElementById('signup-password');
     const signup_msg = document.getElementById('signup-msg');
-    const signup_success = document.getElementById('signup-success');
+    
     const signup_error = document.getElementById('signup-error');
 
     
@@ -57,10 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const result = await axios.post("http://localhost:3000/login", User);
 
-                alert('User Logged In Successfully');
+                // alert('User Logged In Successfully');
 
-                // localStorage.setItem('token', result.data.token);
+                alert(result.data.message);
 
+                // console.log(result.data.token);
+                localStorage.setItem('token', result.data.token);
                 window.location.href = '../dashboard/home.html';
 
                 login_form.reset();
@@ -120,8 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await axios.post("http://localhost:3000/signup", User);
                 signup_form.reset();
                 console.log(result);
-                signup_success.innerHTML = ` ${result.data.message}`;
-                // login_form.addEventListener('submit',loginPanel);
+                
+                alert( ` ${result.data.message}`);
+                document.getElementById('btn-login-panel').click();
                 
             }
             catch (err) {

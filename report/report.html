@@ -17,26 +17,26 @@
             <div class="w-1/2 md:w-auto">
                 <a class="hover:underline text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
                 href="../dashboard/home.html">
-                <img src="../images/logo4.png" alt="Logo" class="md:w-80 w-40">
+                <img src="../images/logo4.png" alt="Logo" class="lg:w-80 w-40">
                 </a>
             </div>
 
-            <div id="slideover-bg" class="absolute inset-0 w-full h-full bg-gray-900 opacity-0 invisible"></div>
+            <div id="slideover-bg" class="absolute inset-0 w-full h-full bg-gray-600 opacity-0 invisible"></div>
 
             <div
                 class="hidden nav-links md:static absolute bg-[#154e49] md:min-h-fit min-h-[60vh] right-0 top-0 md:w-auto w-1/2 h-full md:flex items-center px-5">
-                <ul class="flex md:flex-row flex-col mt-20 md:mt-0 md:items-center md:gap-16 gap-8">
+                <ul class="flex md:flex-row flex-col mt-20 md:mt-0 md:items-center lg:gap-16 gap-8">
                     <li>
                         <a class="hover:underline text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
                             href="../dashboard/home.html">Home</a>
                     </li>
-                    <li>
-                        <a class="hover:underline text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
-                            href="../report/report.html">Report</a>
+                    <li id="report-tab">
+                        <a class="hover:underline flex  text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
+                            href="../report/report.html">Report <img src="../images/crown.png" alt="" class="size-5  mx-1"></a>
                     </li>
-                    <li>
-                        <a class="hover:underline text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
-                            href="../leaderboard/leaderboard.html">LeaderBoard</a>
+                    <li id="leaderboard-tab">
+                        <a class="hover:underline flex text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
+                            href="../leaderboard/leaderboard.html">LeaderBoard <img src="../images/crown.png" alt="" class="size-5  mx-1"></a>
                     </li>
                 </ul>
             </div>
@@ -45,13 +45,17 @@
                 <button id="buy-btn"
                     class="w-fit text-xs md:text-base flex text-[#154e49] py-2 px-3 rounded-full bg-white font-bold">Buy
                     Premium
-                    <img src="../images/crown.png" alt="" class="md:w-8 w-5"></button>
+                    <img src="../images/crown.png" alt="" class="size-5 md:size-7"></button>
+                    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                    
+                <div id="premium_memb" class="hidden">
+                    <h4  class="text-xs md:text-base flex text-white py-2 px-3  rounded-full font-bold">Premium Member <img src="../images/crown.png" alt="" class="size-5 md:size-7 mx-1"></h4> 
+                </div>
                 <ion-icon onclick="onToggleMenu(this)" name="menu"
                     class="z-50 text-3xl cursor-pointer md:hidden text-white"></ion-icon>
             </div>
         </nav>
     </header>
-
 
     <main class="z-1">
         <div class="my-10 md:mx-20 mx-5">
