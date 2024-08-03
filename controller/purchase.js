@@ -1,9 +1,15 @@
-
 const Razorpay = require('razorpay');
+
+const sequelize = require('../util/database');
+
 const Order = require('../models/order');
+
 const userController=require('./user');
 
 exports.purchasePremium = async (req, res) => {
+
+    const t=await sequelize.transaction();
+
     try {
 
         const rzp = new Razorpay({
@@ -24,7 +30,8 @@ exports.purchasePremium = async (req, res) => {
                 };
 
                 console.log(userOrder);
-                await req.user.createOrder(userOrder)
+                await req.user.createOrder(userOrder,{transaction:t})
+                await t.commit();
 
                 return res.status(201).json({ order, key_id: rzp.key_id });
 
@@ -32,6 +39,7 @@ exports.purchasePremium = async (req, res) => {
         })
     }
     catch (err) {
+        await t.rollback();
         res.status(500).json({ success: false, message: 'Something went wrong' });
 
     }
@@ -39,6 +47,8 @@ exports.purchasePremium = async (req, res) => {
 
 
 exports.updateTransaction = async (req, res) => {
+
+    const t=await sequelize.transaction();
 
     try {
 
@@ -50,20 +60,23 @@ exports.updateTransaction = async (req, res) => {
         let update1 ;
         let update2 ;
         if(status=='successful'){
-            update1=order.update({ paymentid: payment_id, status: 'SUCCESSFUL' });
-            update2=req.user.update({ ispremiumuser: true });
+            update1=order.update({ paymentid: payment_id, status: 'SUCCESSFUL' },{transaction:t});
+            update2=req.user.update({ ispremiumuser: true },{transaction:t});
             
         }
         else{
-            update1 = order.update({ payment_id: payment_id, status: 'FAILED' });
-            update2 = req.user.update({ ispremiumuser: false });           
+            update1 = order.update({ payment_id: payment_id, status: 'FAILED' },{transaction:t});
+            update2 = req.user.update({ ispremiumuser: false },{transaction:t});           
         }
 
         await Promise.all([update1, update2]);
+
+        await t.commit();
         res.status(202).json({ success: true, message: status , token: userController.generateToken(req.user.id,req.user.ispremiumuser)});
 
     }
     catch (err) {
+        await t.rollback();
         console.log(err);
         res.status(500).json({ success: false, message: 'Something went wrong' });
 

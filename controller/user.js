@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 
 const User = require('../models/user');
 const jwt=require('jsonwebtoken');
+const sequelize = require('../util/database');
 
 const generateToken=(id, ispremiumuser)=>{
     return jwt.sign({userId:id , ispremiumuser:ispremiumuser},'sdkjflk');
@@ -9,6 +10,8 @@ const generateToken=(id, ispremiumuser)=>{
 
 
 const postSignupUser = async (req, res) => {
+
+    const t=await sequelize.transaction();
 
     try {
 
@@ -32,7 +35,9 @@ const postSignupUser = async (req, res) => {
                         email: email,
                         name: uname,
                         password: hash
-                    });
+                    },{transaction:t});
+
+                    await t.commit();
 
                     res.status(201).json({ newUser: newUser, message: 'User registered Successfully...Please Log In' });
                 }
@@ -43,6 +48,7 @@ const postSignupUser = async (req, res) => {
         }
     }
     catch (err) {
+        await t.rollback();
         res.status(500).json({ success: false, message: err });
     }
 
