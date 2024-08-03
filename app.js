@@ -11,21 +11,28 @@ const sequelize=require('./util/database');
 
 const User=require('./models/user');
 const Expense=require('./models/expense');
+const Order=require('./models/order');
 
-const expenseRouter=require('./routes/expense');
 const userRouter=require('./routes/user');
+const expenseRouter=require('./routes/expense');
+const purchaseRouter=require('./routes/purchase');
+const premiumRouter=require('./routes/premium');
 
 
 app.use(cors());
 
 app.use(bodyParser.json({extended:false}));
 
-app.use(expenseRouter);
 app.use(userRouter);
+app.use(expenseRouter);
+app.use(purchaseRouter);
+app.use(premiumRouter);
 
 User.hasMany(Expense);
 Expense.belongsTo(User);
 
+User.hasMany(Order);
+Order.belongsTo(User);
 
 
 sequelize

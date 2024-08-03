@@ -1,9 +1,14 @@
 const bcrypt = require('bcrypt');
 
 const User = require('../models/user');
+const jwt=require('jsonwebtoken');
+
+const generateToken=(id, ispremiumuser)=>{
+    return jwt.sign({userId:id , ispremiumuser:ispremiumuser},'sdkjflk');
+}
 
 
-exports.postSignupUser = async (req, res) => {
+const postSignupUser = async (req, res) => {
 
     try {
 
@@ -12,9 +17,10 @@ exports.postSignupUser = async (req, res) => {
         password = req.body.password;
 
 
-        const user = await User.findByPk(email)
+        const user = await User.findAll({where:{email:email}})
 
-        if (user) {
+        
+        if (user.length>0) {
             res.status(403).json('User Already Exists');
         }
         else {
@@ -43,23 +49,24 @@ exports.postSignupUser = async (req, res) => {
 }
 
 
-exports.postLoginUser = async (req, res) => {
+const postLoginUser = async (req, res) => {
 
     try{
         const email = req.body.email;
         const password = req.body.password;
     
-        const user = await User.findByPk(email)
+        const user = await User.findAll({where:{email}});
     
-        if (user) {
+        if (user.length>0) {
 
-            bcrypt.compare(password,user.password,(err,result)=>{
+            
+            bcrypt.compare(password,user[0].password,(err,result)=>{
 
                 if(err){
                     throw new Error('Something Went Wrong');
                 }
                 if(result){
-                    res.status(200).json({ message: 'User logged in Successfully' });
+                    res.status(200).json({ message: 'User logged in Successfully' , token: generateToken(user[0].id , user[0].ispremiumuser) });
                 }
                 else{
                     res.status(401).json({ message: ' User not authorized' });
@@ -76,3 +83,5 @@ exports.postLoginUser = async (req, res) => {
     }
 
 };
+
+module.exports={postLoginUser,postSignupUser,generateToken};
