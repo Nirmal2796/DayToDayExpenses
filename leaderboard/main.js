@@ -21,13 +21,13 @@ async function showLeaderBoard() {
 
         let newRow;
 
-        if (result.data[i].total_cost == null) {
+        if (result.data[i].totalExpenses == null) {
 
 
-            newRow = `<tr id=${result.data[i].id+1}  
+            newRow = `<tr id=${result.data[i].id}  
              class="list-group-item odd:bg-white even:bg-[#799e9b] text-[#154e49] font-semibold  border-b"> 
               <td class="px-6 py-3">
-                    ${result.data[i].userId} </td> 
+                    ${Number(i)+1} </td> 
                     <td class="px-6 py-3">
                     ${result.data[i].name} </td> 
                     <td class="px-6 py-4">0</td> 
@@ -39,10 +39,10 @@ async function showLeaderBoard() {
             newRow = `<tr id=${result.data[i].id}  
                 class="list-group-item odd:bg-white even:bg-[#799e9b] text-[#154e49] font-semibold  border-b"> 
                  <td class="px-6 py-3">
-                       ${result.data[i].userId} </td> 
+                       ${Number(i)+1} </td> 
                        <td class="px-6 py-3">
                        ${result.data[i].name} </td> 
-                       <td class="px-6 py-4">${result.data[i].total_cost} </td> 
+                       <td class="px-6 py-4">${result.data[i].totalExpenses} </td> 
                        </tr>`;
 
         }

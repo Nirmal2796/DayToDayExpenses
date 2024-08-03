@@ -31,8 +31,8 @@ function parseJwt (token) {
 
 //SHOW PREMIUM
 function showPremium(){
-    document.getElementById('premium_memb').classList.toggle('hidden');
     rzp_button.classList.toggle('hidden');
+    document.getElementById('premium_memb').classList.toggle('hidden');
     document.getElementById("report-tab").removeEventListener('click',alertBuyPremium);
     document.getElementById("leaderboard-tab").removeEventListener('click',alertBuyPremium);
 }
