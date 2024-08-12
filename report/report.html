@@ -103,28 +103,41 @@
                     </div>
                 </form>
 
-                <div
-                    class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
-                    <table id="date-report" hidden class="w-full text-sm text-white text-center">
 
-                        <thead class="uppercase text-xs bg-[#154e49]">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">Category</th>
-                                <th scope="col" class="px-6 py-3">Amount</th>
-                                <th scope="col" class="px-6 py-3">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody id="date-table-body">
+                <div id="date-report-div">
 
-                        </tbody>
+                    <div
+                        class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
+                        <table id="date-report" hidden class="w-full text-sm text-white text-center">
+    
+                            <thead class="uppercase text-xs bg-[#154e49]">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">Category</th>
+                                    <th scope="col" class="px-6 py-3">Amount</th>
+                                    <th scope="col" class="px-6 py-3">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody id="date-table-body">
+    
+                            </tbody>
+    
+    
+                        </table>
+                        
+                    </div>
+    
+                    <div id="date-download-btn" hidden class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
+                        <button type=""
+                                class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
+                    </div>
+    
+                    <div id="noDateRecords" hidden class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
+                        <h3>Records Not Available</h3>
+                    </div>
 
-
-                    </table>
                 </div>
 
-                <div id="noDateRecords" hidden class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
-                    <h3>Records Not Available</h3>
-                </div>
+                
             </div>
 
             <div id="month-div"  aria-labelledby="date-tab">
@@ -147,28 +160,38 @@
                     </div>
                 </form>
 
-                <div
-                    class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
-                    <table id="month-report" hidden class="w-full text-sm text-white text-center">
+                <div id="month-report-div">
 
-                        <thead class="uppercase text-xs bg-[#154e49]">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">Category</th>
-                                <th scope="col" class="px-6 py-3">Amount</th>
-                                <th scope="col" class="px-6 py-3">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody id="month-table-body">
-
-                        </tbody>
-
-
-                    </table>
+                    <div
+                        class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
+                        <table id="month-report" hidden class="w-full text-sm text-white text-center">
+    
+                            <thead class="uppercase text-xs bg-[#154e49]">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">Category</th>
+                                    <th scope="col" class="px-6 py-3">Amount</th>
+                                    <th scope="col" class="px-6 py-3">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody id="month-table-body">
+    
+                            </tbody>
+    
+    
+                        </table>
+                    </div>
+    
+                    <div id="month-download-btn" hidden class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
+                        <button type=""
+                                class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
+                    </div>
+    
+    
+                    <div id="noMonthRecords" hidden class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
+                        <h3>Records Not Available</h3>
+                    </div>
                 </div>
 
-                <div id="noMonthRecords" hidden class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
-                    <h3>Records Not Available</h3>
-                </div>
             </div>
 
             <div id="year-div"  aria-labelledby="date-tab">
@@ -191,28 +214,38 @@
                             class="w-fit text-white py-2 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold md:text-sm text-xs">SEARCH</button>
                     </div>
                 </form>
-                <div
-                    class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
-                    <table id="year-report" hidden class="w-full text-sm text-white text-center">
 
-                        <thead class="uppercase text-xs bg-[#154e49]">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">Category</th>
-                                <th scope="col" class="px-6 py-3">Amount</th>
-                                <th scope="col" class="px-6 py-3">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody id="year-table-body">
+                <div id="year-report-div">
 
-                        </tbody>
-
-
-                    </table>
+                    <div
+                        class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
+                        <table id="year-report" hidden class="w-full text-sm text-white text-center">
+    
+                            <thead class="uppercase text-xs bg-[#154e49]">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">Category</th>
+                                    <th scope="col" class="px-6 py-3">Amount</th>
+                                    <th scope="col" class="px-6 py-3">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody id="year-table-body">
+    
+                            </tbody>
+    
+    
+                        </table>
+                    </div>
+    
+                    <div id="year-download-btn" hidden class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
+                        <button type=""
+                                class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
+                    </div>
+    
+                    <div id="noYearRecords" hidden class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
+                        <h3>Records Not Available</h3>
+                    </div>
                 </div>
 
-                <div id="noYearRecords" hidden class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
-                    <h3>Records Not Available</h3>
-                </div>
             </div>
         </div>
 
