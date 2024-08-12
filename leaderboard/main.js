@@ -47,7 +47,7 @@ async function showLeaderBoard() {
 
         }
 
-        leaderboard_table.insertAdjacentHTML('afterend', newRow);
+        leaderboard_table.insertAdjacentHTML('beforeend', newRow);
     }
 
 

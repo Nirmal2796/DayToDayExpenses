@@ -1,4 +1,4 @@
-const forgot_form = document.querySelector('#forgot-form');
+const forgot_form = document.getElementById('forgot-form');
     const forgot_email = document.getElementById('forgot-email');
     const forgot_msg = document.getElementById('forgot-msg');
     const forgot_error = document.getElementById('forgot-error');
@@ -28,10 +28,11 @@ const forgot_form = document.querySelector('#forgot-form');
 
                 };
 
-                const result = await axios.post("http://localhost:3000/password/forgotpassword", Email);
+                // console.log(Email);
+
+                const result = await axios.post("http://localhost:3000/forgotpassword", Email);
 
                 // console.log(result);
-
 
                 forgot_form.reset();
             }
