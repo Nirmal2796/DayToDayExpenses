@@ -46,14 +46,19 @@ tabs.forEach(tab => {
 //token
 const token = localStorage.getItem('token');
 
+//
+let dateVal;
+let monthVal;
+let yearVal;
 
 //DATE REPORT
 async function showDateReport(e) {
     e.preventDefault();
+    dateVal=date.value;
     const expenses = await axios.get(`http://localhost:3000/get-report/${date.value}`, { headers: { 'Auth': token } });
     date_form.reset();
 
-    console.log(expenses.data.length);
+    // console.log(expenses.data.length);
 
     dateDiv.hidden=false;
     document.getElementById('date-table-body').innerHTML = " ";
@@ -78,7 +83,8 @@ async function showDateReport(e) {
 //MONTH REPORT
 async function showMonthReport(e) {
     e.preventDefault();
-    console.log(month.value)
+    console.log(month.value);
+    monthVal=month.value;
     const expenses = await axios.get(`http://localhost:3000/get-monthReport?month=${month.value.split('-')[1]}&year=${month.value.split('-')[0]} `, { headers: { 'Auth': token } });
 
     month_form.reset();
@@ -107,6 +113,7 @@ async function showMonthReport(e) {
 //YEAR REPORT
 async function showYearReport(e) {
     e.preventDefault();
+    yearVal=year.value;
     const expenses = await axios.get(`http://localhost:3000/get-yearReport/${year.value} `, { headers: { 'Auth': token } });
 
     year_form.reset();
@@ -157,7 +164,7 @@ function showOnScreen(obj, table) {
 
 async function downlodReport(e) {
     
-    const res = await axios.get(`http://localhost:3000//download-report/${date.value}`, { headers: { 'Auth': token } });
+    const res = await axios.get(`http://localhost:3000/download-report/${dateVal}`, { headers: { 'Auth': token } });
 
     if(res.status==200){
         var a= document.createElement('a');
@@ -174,7 +181,7 @@ async function downlodReport(e) {
 
 async function downloadMonthReport(e) {
     
-    const res = await axios.get(`http://localhost:3000/download-monthReport?month=${month.value.split('-')[1]}&year=${month.value.split('-')[0]} `, { headers: { 'Auth': token } });
+    const res = await axios.get(`http://localhost:3000/download-monthReport?month=${monthVal.split('-')[1]}&year=${monthVal.split('-')[0]} `, { headers: { 'Auth': token } });
 
     if(res.status==200){
         var a= document.createElement('a');
@@ -191,7 +198,7 @@ async function downloadMonthReport(e) {
 
 async function downloadYearReport(e) {
    
-    const expenses = await axios.get(`http://localhost:3000/download-yearReport/${year.value} `, { headers: { 'Auth': token } });
+    const res = await axios.get(`http://localhost:3000/download-yearReport/${yearVal} `, { headers: { 'Auth': token } });
 
     if(res.status==200){
         var a= document.createElement('a');
