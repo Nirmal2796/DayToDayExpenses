@@ -13,5 +13,7 @@ router.get('/get-yearReport/:year',userAuthentication.authentication,premiumCont
 
 router.get('/showleaderboard',userAuthentication.authentication,premiumController.getLeaderBoard);
 
+router.get('/download-yearReport',userAuthentication.authentication,premiumController.downloadReport);
+
 
 module.exports=router;

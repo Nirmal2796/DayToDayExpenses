@@ -7,7 +7,7 @@ exports.getLeaderBoard=async (req,res)=>{
 
     const leaderBoard= await User.findAll({
         attributes:['id','name','totalExpenses'],
-        order:[['totalExpenses',"DESC"]],
+        order:[['totalExpenses','DESC']],
         limit:10
     });
 
@@ -67,6 +67,16 @@ exports.getYearReport = async (req, res) => {
 
         })
         res.status(200).json(expenses);
+
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+
+exports.downloadReport=async(req,res)=>{
+    try{
 
     }
     catch (err) {

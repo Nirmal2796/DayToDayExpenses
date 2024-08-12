@@ -9,9 +9,18 @@ const Order=sequelize.define('order',{
         allowNull:false,
         primaryKey:true
     },
-    paymentid:Sequelize.STRING,
-    orderid:Sequelize.STRING,
-    status:Sequelize.STRING
+    paymentid:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
+    orderid:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
+    status:{
+        type:Sequelize.STRING,
+        allowNull:false
+    }
 });
 
 module.exports=Order

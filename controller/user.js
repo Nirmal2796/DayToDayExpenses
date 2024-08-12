@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 
+
 const User = require('../models/user');
 const jwt=require('jsonwebtoken');
 const sequelize = require('../util/database');
@@ -89,5 +90,9 @@ const postLoginUser = async (req, res) => {
     }
 
 };
+
+
+
+
 
 module.exports={postLoginUser,postSignupUser,generateToken};
