@@ -72,7 +72,7 @@
                 </li>
                 <li>
                     <button type="button" data-tabs-target="#downloads-div" id="downloads-tab" role="tab"
-                        class="inline-block p-2 md:p-3 hover:text-[#FBB04B]">DOWNLOADS</button>
+                        class="inline-block p-2 md:p-3 hover:text-[#FBB04B]" onclick=showDownloadedFiles()>DOWNLOADS</button>
                 </li>
             </ul>
         </div>
@@ -285,10 +285,10 @@
 
             <div id="downloads-div">
 
-                <div class="relative overflow-x-auto w-1/2   mx-auto rounded-t-3xl md:drop-shadow-md ">
-                    <table id="downloads-table" class="w-full text-sm text-white text-center">
+                <div class="relative overflow-x-auto md:w-1/2 w-fit mx-auto rounded-t-3xl md:drop-shadow-md ">
+                    <table id="downloads-table" class="w-full md:text-base text-sm text-white text-center">
 
-                        <thead class="uppercase text-xs bg-[#154e49]">
+                        <thead class="uppercase md:text-base text-xs bg-[#154e49]">
                             <tr>
                                 <th scope="col" class="px-6 py-3">Date</th>
                                 <th scope="col" class="px-6 py-3">Link</th>

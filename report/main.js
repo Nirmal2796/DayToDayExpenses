@@ -172,7 +172,7 @@ async function downlodReport(e) {
     if (res.status == 200) {
         var a = document.createElement('a');
         a.href = res.data.fileURL;
-        a.download = 'MyExpenses.csv';
+        a.download = 'MyExpenses.txt';
         a.click();
     }
     else {
@@ -223,6 +223,8 @@ async function showDownloadedFiles(e) {
 
     const files = await axios.get(`http://localhost:3000/showDownloads`, { headers: { 'Auth': token } });
 
+    console.log(files)
+
     document.getElementById('downloads-table-body').innerHTML = " ";
 
     if (files.data.length == 0) {
@@ -234,17 +236,17 @@ async function showDownloadedFiles(e) {
         noDownloadedRecords.hidden = true;
         downloadsTable.hidden = false;
 
-        console.log(files.data)
+        
 
-        // for (let f in files.data) {
-        //     const newRow = `<tr id=${files.data[f].id}  class="list-group-item odd:bg-white even:bg-[#799e9b] text-[#154e49] font-semibold  border-b">
-        //                     <td class="px-6 py-4">${files.data[f].date} </td> 
-        //                     <td class="px-6 py-4">${files.data[f].link}</td> 
+        for (let f in files.data) {
+            const newRow = `<tr id=${files.data[f].id}  class="list-group-item odd:bg-white even:bg-[#799e9b] text-[#154e49] font-semibold  border-b">
+                            <td class="px-6 py-4">${files.data[f].date} </td> 
+                            <td class="px-6 py-4"><a href='${files.data[f].fileURL}' class='hover:text-blue-600 underline'>LINK</a></td> 
                             
-        //                     </tr>`;
+                            </tr>`;
 
-        //     downloadsTable.getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', newRow);
-        // }
+            downloadsTable.getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', newRow);
+        }
 
     }
 }
