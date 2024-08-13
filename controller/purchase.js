@@ -3,8 +3,7 @@ const Razorpay = require('razorpay');
 const sequelize = require('../util/database');
 
 const Order = require('../models/order');
-
-const userController=require('./user');
+const JWTServices=require('../services/JWTservices');
 
 exports.purchasePremium = async (req, res) => {
 
@@ -72,7 +71,7 @@ exports.updateTransaction = async (req, res) => {
         await Promise.all([update1, update2]);
 
         await t.commit();
-        res.status(202).json({ success: true, message: status , token: userController.generateToken(req.user.id,req.user.ispremiumuser)});
+        res.status(202).json({ success: true, message: status , token: JWTServices.generateToken(req.user.id,req.user.ispremiumuser)});
 
     }
     catch (err) {

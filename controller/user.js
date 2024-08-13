@@ -2,12 +2,8 @@ const bcrypt = require('bcrypt');
 
 
 const User = require('../models/user');
-const jwt=require('jsonwebtoken');
+const JWTServices=require('../services/JWTservices');
 const sequelize = require('../util/database');
-
-const generateToken=(id, ispremiumuser)=>{
-    return jwt.sign({userId:id , ispremiumuser:ispremiumuser},'sdkjflk');
-}
 
 
 const postSignupUser = async (req, res) => {
@@ -73,7 +69,7 @@ const postLoginUser = async (req, res) => {
                     throw new Error('Something Went Wrong');
                 }
                 if(result){
-                    res.status(200).json({ message: 'User logged in Successfully' , token: generateToken(user[0].id , user[0].ispremiumuser) });
+                    res.status(200).json({ message: 'User logged in Successfully' , token: JWTServices.generateToken(user[0].id , user[0].ispremiumuser) });
                 }
                 else{
                     res.status(401).json({ message: ' User not authorized' });
@@ -95,4 +91,4 @@ const postLoginUser = async (req, res) => {
 
 
 
-module.exports={postLoginUser,postSignupUser,generateToken};
+module.exports={postLoginUser,postSignupUser};

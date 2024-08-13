@@ -2,14 +2,17 @@
 
 const sequelize = require('../util/database');
 
+const UserServices=require('../services/userServices');
+
 exports.getExpenses = async (req, res) => {
     try {
 
-        const expenses = await req.user.getExpenses();
+        const expenses = await UserServices.getExpenses(req);
         res.status(200).json(expenses);
     }
     catch (err) {
         console.log(err);
+        res.status(500).json({success:false});
     }
 }
 
@@ -43,6 +46,7 @@ exports.addExpense = async (req, res) => {
     catch (err) {
         await t.rollback();
         console.log(err);
+        res.status(500).json({success:false});
     }
 
 }
@@ -69,6 +73,7 @@ exports.deleteExpense = async (req, res) => {
     catch (err) {
         await t.rollback();
         console.log(err);
+        res.status(500).json({success:false});
     }
 }
 
