@@ -1,92 +1,10 @@
-const User = require('../models/user');
 const sequelize = require('../util/database');
 const { Op } = require("sequelize");
 
 const S3Services=require('../services/S3Services');
 const UserServices=require('../services/userServices');
 
-
-exports.getLeaderBoard = async (req, res) => {
-
-    try {
-
-        const leaderBoard = await User.findAll({
-            attributes: ['id', 'name', 'totalExpenses'],
-            order: [['totalExpenses', 'DESC']],
-            limit: 10
-        });
-
-        res.status(200).json(leaderBoard);
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json({success:false});
-    }
-
-}
-
-
-exports.getReport = async (req, res) => {
-    try {
-        const date = req.params.date;
-
-        const expenses = await UserServices.getExpenses(req,{ where: { date: date } });
-
-        res.status(200).json(expenses);
-
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json({success:false});
-    }
-}
-
-exports.getMonthReport = async (req, res) => {
-    try {
-        const month = req.query.month;
-        const year = req.query.year;
-
-        // console.log(year);
-
-        const expenses = await UserServices.getExpenses(req,{
-            where: {
-                [Op.and]: [
-                    sequelize.where(sequelize.fn('MONTH', sequelize.col('date')), month),
-                    sequelize.where(sequelize.fn('YEAR', sequelize.col('date')), year),
-                ]
-            }
-        })
-        res.status(200).json(expenses);
-
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json({success:false});
-    }
-}
-
-exports.getYearReport = async (req, res) => {
-    try {
-
-        const year = req.params.year;
-
-        // console.log(year);
-
-        const expenses = await UserServices.getExpenses(req,{
-            where:
-                sequelize.where(sequelize.fn('YEAR', sequelize.col('date')), year),
-
-        })
-        res.status(200).json(expenses);
-
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json({success:false});
-    }
-}
-
-
+const Downloads=require('../models/downloads');
 
 
 exports.downloadReport = async (req, res) => {
@@ -101,6 +19,11 @@ exports.downloadReport = async (req, res) => {
 
         const fileURL = await S3Services.uploadToS3(stringifiedExpenses, fileName);
 
+        console.log(fileURL);
+        await req.user.createDownload({
+            date: new Date(),
+            fileURL:fileURL
+        });
         res.status(200).json({ fileURL: fileURL, success: true });
 
     }
@@ -109,6 +32,7 @@ exports.downloadReport = async (req, res) => {
         res.status(500).json({ fileURL: '', success: false });
     }
 }
+
 
 exports.downloadMonthlyReport = async (req, res) => {
     try {
@@ -140,6 +64,7 @@ exports.downloadMonthlyReport = async (req, res) => {
     }
 }
 
+
 exports.downloadYearlyReport = async (req, res) => {
     try {
         const year = req.params.year;
@@ -162,5 +87,20 @@ exports.downloadYearlyReport = async (req, res) => {
     catch (err) {
         console.log(err);
         res.status(500).json({ fileURL: '', success: false });
+    }
+}
+
+
+exports.showDownloads=async (req,res)=>{
+    try{
+
+        const downloads=await req.user.getDownloads();
+
+        res.status(200).json(downloads);
+
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json({success: false });
     }
 }

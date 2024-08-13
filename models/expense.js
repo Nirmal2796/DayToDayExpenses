@@ -1,7 +1,7 @@
 const Sequelize=require('sequelize');
 
 const sequelize=require('../util/database');
-const { format } = require('mysql2');
+
 
 const Expense=sequelize.define('expense',{
     id:{

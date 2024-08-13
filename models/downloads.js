@@ -2,24 +2,22 @@ const Sequelize=require('sequelize');
 
 const sequelize=require('../util/database');
 
-const Order=sequelize.define('order',{
+const Downloads=sequelize.define('download',{
     id:{
         type:Sequelize.INTEGER,
-        autoIncrement:true,
         allowNull:false,
-        primaryKey:true
+        primaryKey:true,
+        autoIncrement:true
     },
-    paymentid:{
-        type:Sequelize.STRING
-    },
-    orderid:{
-        type:Sequelize.STRING,
+    date:{
+        type:Sequelize.DATEONLY,
         allowNull:false
     },
-    status:{
+    fileURL:{
         type:Sequelize.STRING,
         allowNull:false
     }
 });
 
-module.exports=Order
+
+module.exports=Downloads;

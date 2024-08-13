@@ -15,11 +15,14 @@ const User=require('./models/user');
 const Expense=require('./models/expense');
 const Order=require('./models/order');
 const ForgotPasswordRequests=require('./models/forgotPasswordRequests');
+const Downloads=require('./models/downloads');
 
 const userRouter=require('./routes/user');
 const expenseRouter=require('./routes/expense');
 const purchaseRouter=require('./routes/purchase');
-const premiumRouter=require('./routes/premium');
+const reportsRouter=require('./routes/reports');
+const downloadsRouter=require('./routes/downloads');
+const leaderboardRouter=require('./routes/leaderboard');
 const passwordRouter=require('./routes/password');
 
 
@@ -31,7 +34,9 @@ app.use(bodyParser.json({extended:false}));
 app.use(userRouter);
 app.use(expenseRouter);
 app.use(purchaseRouter);
-app.use(premiumRouter);
+app.use(reportsRouter);
+app.use(downloadsRouter);
+app.use(leaderboardRouter);
 app.use(passwordRouter);
 
 User.hasMany(Expense);
@@ -40,9 +45,12 @@ Expense.belongsTo(User);
 User.hasMany(Order);
 Order.belongsTo(User);
 
-
 User.hasMany(ForgotPasswordRequests);
 ForgotPasswordRequests.belongsTo(User);
+
+User.hasMany(Downloads);
+Downloads.belongsTo(User);
+
 
 sequelize
 .sync()
