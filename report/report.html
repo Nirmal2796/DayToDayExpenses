@@ -15,9 +15,9 @@
     <header class="bg-[#154e49] py-2">
         <nav class="flex justify-between items-center w-[95%] mx-auto">
             <div class="w-1/2 md:w-auto">
-                <a class="hover:underline text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
-                href="../dashboard/home.html">
-                <img src="../images/logo4.png" alt="Logo" class="lg:w-80 w-44">
+                <a class="hover:underline text-white font-semibold hover:text-[#FBB04B]"
+                    href="../dashboard/home.html">
+                    <img src="../images/logo4.png" alt="Logo" class="lg:w-80 w-44">
                 </a>
             </div>
 
@@ -27,16 +27,18 @@
                 class="hidden nav-links md:static absolute bg-[#154e49] md:min-h-fit min-h-[60vh] right-0 top-0 md:w-auto w-1/2 h-full md:flex items-center px-5">
                 <ul class="flex md:flex-row flex-col mt-20 md:mt-0 md:items-center lg:gap-16 gap-8">
                     <li>
-                        <a class="hover:underline text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
+                        <a class="hover:underline text-white font-semibold hover:text-[#FBB04B]"
                             href="../dashboard/home.html">Home</a>
                     </li>
                     <li id="report-tab">
-                        <a class="hover:underline flex  text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
-                            href="../report/report.html">Report <img src="../images/crown.png" alt="" class="size-5  mx-1"></a>
+                        <a class="hover:underline flex  text-white font-semibold hover:text-[#FBB04B]"
+                            href="../report/report.html">Report <img src="../images/crown.png" alt=""
+                                class="size-5  mx-1"></a>
                     </li>
                     <li id="leaderboard-tab">
-                        <a class="hover:underline flex text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
-                            href="../leaderboard/leaderboard.html">LeaderBoard <img src="../images/crown.png" alt="" class="size-5  mx-1"></a>
+                        <a class="hover:underline flex text-white font-semibold hover:text-[#FBB04B]"
+                            href="../leaderboard/leaderboard.html">LeaderBoard <img src="../images/crown.png" alt=""
+                                class="size-5  mx-1"></a>
                     </li>
                 </ul>
             </div>
@@ -47,9 +49,10 @@
                     Premium
                     <img src="../images/crown.png" alt="" class="size-5 md:size-7"></button>
                     <script src="https://checkout.razorpay.com/v1/checkout.js"></script> -->
-                    
+
                 <div id="premium_memb" class="">
-                    <h4  class="text-sm md:text-base flex items-center text-white py-2 px-3 font-bold">Premium<img src="../images/crown.png" alt="" class="size-5 md:size-7 mx-1"></h4> 
+                    <h4 class="text-sm md:text-base flex items-center text-white py-2 px-3 font-bold">Premium<img
+                            src="../images/crown.png" alt="" class="size-5 md:size-7 mx-1"></h4>
                 </div>
                 <ion-icon onclick="onToggleMenu(this)" name="menu"
                     class="z-50 text-3xl cursor-pointer md:hidden text-white"></ion-icon>
@@ -58,196 +61,249 @@
     </header>
 
     <main class="z-1">
-        <div class="my-10 md:mx-20 mx-5">
-            <ul data-tabs-toggle="#report-table-div" role="tablist" data-tabs-active-classes="text-[#FBB04B]"
-                data-tabs-inactive-classes="text-white"
-                class="flex flex-wrap justify-around rounded-xl text-white text-sm md:text-base font-medium border-b border-[#154e49] bg-[#154e49]">
-                <li>
-                    <button type="button" data-tabs-target="#date-div" id="date-tab" role="tab"
-                        class="inline-block p-2 md:p-3 hover:text-[#FBB04B]">Day</button>
-                </li>
 
+        <div class="md:mt-8 mt-5 mb-5 md:mx-10 mx-5">
+            <ul data-tabs-toggle="" role="tablist" data-tabs-active-classes="text-[#FBB04B] border-b-4 border-[#FBB04B]"
+                data-tabs-inactive-classes="text-[#154e49]"
+                class="flex flex-wrap justify-around text-sm md:text-xl font-bold  drop-shadow-lg">
                 <li>
-                    <button type="button" data-tabs-target="#month-div" id="month-tab" role="tab"
-                        class="inline-block p-2 md:p-3 hover:text-[#FBB04B] active:text-[#FBB04B]">Month</button>
+                    <button type="button" data-tabs-target="#reports-div" id="reports-tab" role="tab"
+                        class="inline-block p-2 md:p-3 hover:text-[#FBB04B]">REPORT</button>
                 </li>
-
                 <li>
-                    <button type="button" data-tabs-target="#year-div" id="year-tab" role="tab"
-                        class="inline-block p-2 md:p-3 hover:text-[#FBB04B] active:text-[#FBB04B]">Year</button>
+                    <button type="button" data-tabs-target="#downloads-div" id="downloads-tab" role="tab"
+                        class="inline-block p-2 md:p-3 hover:text-[#FBB04B]">DOWNLOADS</button>
                 </li>
             </ul>
         </div>
 
 
 
-        <div id="report-table-div" class="">
+        <div id="reports-downloads-div">
+            <div id="reports-div">
 
-            <div id="date-div"  aria-labelledby="date-tab" >
-                <form action="" id="date-form">
+                <div class="md:mb-10 mb-5 md:mx-20 mx-5">
+                    <ul data-tabs-toggle="" role="tablist" data-tabs-active-classes="text-[#FBB04B]"
+                        data-tabs-inactive-classes="text-white"
+                        class="flex flex-wrap justify-around rounded-xl text-sm md:text-base font-medium border-b border-[#154e49] bg-[#154e49]">
+                        <li>
+                            <button type="button" data-tabs-target="#date-div" id="date-tab" role="tab"
+                                class="inline-block p-2 md:p-3 hover:text-[#FBB04B]">Day</button>
+                        </li>
 
-                    <div class="relative max-w-xs md:drop-shadow-lg lg:mx-[8.5rem] md:mx-20 mx-10 flex space-x-2">
-                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                            </svg>
-                        </div>
-                        <input datepicker datepicker-autohide datepicker datepicker-format="yyyy-mm-dd" datepicker-buttons datepicker-autoselect-today
-                            id="date" type="text"
-                            class="text-[#154e49] bg-gray-50 border border-[#154e49] rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                            placeholder="Select date">
-                        <button type="submit"
-                            class="w-fit text-white py-2 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">SEARCH</button>
-                    </div>
-                </form>
+                        <li>
+                            <button type="button" data-tabs-target="#month-div" id="month-tab" role="tab"
+                                class="inline-block p-2 md:p-3 hover:text-[#FBB04B] active:text-[#FBB04B]">Month</button>
+                        </li>
 
-
-                <div id="date-report-div">
-
-                    <div
-                        class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
-                        <table id="date-report" hidden class="w-full text-sm text-white text-center">
-    
-                            <thead class="uppercase text-xs bg-[#154e49]">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">Category</th>
-                                    <th scope="col" class="px-6 py-3">Amount</th>
-                                    <th scope="col" class="px-6 py-3">Description</th>
-                                </tr>
-                            </thead>
-                            <tbody id="date-table-body">
-    
-                            </tbody>
-    
-    
-                        </table>
-                        
-                    </div>
-    
-                    <div id="date-download-btn" hidden class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
-                        <button type=""
-                                class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
-                    </div>
-    
-                    <div id="noDateRecords" hidden class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
-                        <h3>Records Not Available</h3>
-                    </div>
-
+                        <li>
+                            <button type="button" data-tabs-target="#year-div" id="year-tab" role="tab"
+                                class="inline-block p-2 md:p-3 hover:text-[#FBB04B] active:text-[#FBB04B]">Year</button>
+                        </li>
+                    </ul>
                 </div>
 
-                
+
+
+                <div id="report-table-div" class="">
+
+                    <div id="date-div">
+                        <form action="" id="date-form">
+
+                            <div
+                                class="relative max-w-xs md:drop-shadow-lg lg:mx-[8.5rem] md:mx-20 mx-10 flex space-x-2">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input datepicker datepicker-autohide datepicker datepicker-format="yyyy-mm-dd"
+                                    datepicker-buttons datepicker-autoselect-today id="date" type="text"
+                                    class="text-[#154e49] bg-gray-50 border border-[#154e49] rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                    placeholder="Select date">
+                                <button type="submit"
+                                    class="w-fit text-white py-2 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">SEARCH</button>
+                            </div>
+                        </form>
+
+
+                        <div id="date-report-div">
+
+                            <div
+                                class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
+                                <table id="date-report" hidden class="w-full text-sm text-white text-center">
+
+                                    <thead class="uppercase text-xs bg-[#154e49]">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3">Category</th>
+                                            <th scope="col" class="px-6 py-3">Amount</th>
+                                            <th scope="col" class="px-6 py-3">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="date-table-body">
+
+                                    </tbody>
+
+
+                                </table>
+
+                            </div>
+
+                            <div id="date-download-btn" hidden
+                                class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
+                                <button type=""
+                                    class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
+                            </div>
+
+                            <div id="noDateRecords" hidden
+                                class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
+                                <h3>Records Not Available</h3>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div id="month-div">
+                        <form action="" id="month-form">
+
+                            <div
+                                class="relative max-w-xs md:drop-shadow-lg lg:mx-[8.5rem] md:mx-20 mx-10 flex space-x-2">
+                                <!-- <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div> -->
+                                <input id="month" type="month"
+                                    class="text-[#154e49] bg-gray-50 border border-[#154e49] rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                    placeholder="Select Month">
+                                <button type="submit"
+                                    class="w-fit text-white py-2 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">SEARCH</button>
+                            </div>
+                        </form>
+
+                        <div id="month-report-div">
+
+                            <div
+                                class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
+                                <table id="month-report" hidden class="w-full text-sm text-white text-center">
+
+                                    <thead class="uppercase text-xs bg-[#154e49]">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3">Category</th>
+                                            <th scope="col" class="px-6 py-3">Amount</th>
+                                            <th scope="col" class="px-6 py-3">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="month-table-body">
+
+                                    </tbody>
+
+
+                                </table>
+                            </div>
+
+                            <div id="month-download-btn" hidden
+                                class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
+                                <button type=""
+                                    class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
+                            </div>
+
+
+                            <div id="noMonthRecords" hidden
+                                class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
+                                <h3>Records Not Available</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="year-div">
+
+
+                        <form action="" id="year-form">
+
+                            <div
+                                class="relative max-w-xs md:drop-shadow-lg lg:mx-[8.5rem] md:mx-20 mx-10 flex space-x-2">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input id="year" min="1900" max="2100" type="number"
+                                    class="text-[#154e49] bg-gray-50 border border-[#154e49] rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                    placeholder="Select Year">
+                                <button type="submit"
+                                    class="w-fit text-white py-2 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold md:text-sm text-xs">SEARCH</button>
+                            </div>
+                        </form>
+
+                        <div id="year-report-div">
+
+                            <div
+                                class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
+                                <table id="year-report" hidden class="w-full text-sm text-white text-center">
+
+                                    <thead class="uppercase text-xs bg-[#154e49]">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3">Category</th>
+                                            <th scope="col" class="px-6 py-3">Amount</th>
+                                            <th scope="col" class="px-6 py-3">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="year-table-body">
+
+                                    </tbody>
+
+
+                                </table>
+                            </div>
+
+                            <div id="year-download-btn" hidden
+                                class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
+                                <button type=""
+                                    class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
+                            </div>
+
+                            <div id="noYearRecords" hidden
+                                class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
+                                <h3>Records Not Available</h3>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
-            <div id="month-div"  aria-labelledby="date-tab">
-                <form action="" id="month-form">
+            <div id="downloads-div">
 
-                    <div class="relative max-w-xs md:drop-shadow-lg lg:mx-[8.5rem] md:mx-20 mx-10 flex space-x-2">
-                        <!-- <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                            </svg>
-                        </div> -->
-                        <input 
-                            id="month" type="month"
-                            class="text-[#154e49] bg-gray-50 border border-[#154e49] rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                            placeholder="Select Month">
-                        <button type="submit"
-                            class="w-fit text-white py-2 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">SEARCH</button>
-                    </div>
-                </form>
+                <div class="relative overflow-x-auto w-1/2 lg:mx-80 md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
+                    <table id="downloads-table" class="w-full text-sm text-white text-center">
 
-                <div id="month-report-div">
+                        <thead class="uppercase text-xs bg-[#154e49]">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Date</th>
+                                <th scope="col" class="px-6 py-3">Link</th>
+                            </tr>
+                        </thead>
+                        <tbody id="downloads-table-body">
 
-                    <div
-                        class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
-                        <table id="month-report" hidden class="w-full text-sm text-white text-center">
-    
-                            <thead class="uppercase text-xs bg-[#154e49]">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">Category</th>
-                                    <th scope="col" class="px-6 py-3">Amount</th>
-                                    <th scope="col" class="px-6 py-3">Description</th>
-                                </tr>
-                            </thead>
-                            <tbody id="month-table-body">
-    
-                            </tbody>
-    
-    
-                        </table>
-                    </div>
-    
-                    <div id="month-download-btn" hidden class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
-                        <button type=""
-                                class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
-                    </div>
-    
-    
-                    <div id="noMonthRecords" hidden class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
-                        <h3>Records Not Available</h3>
-                    </div>
+                        </tbody>
+
+
+                    </table>
+
                 </div>
-
-            </div>
-
-            <div id="year-div"  aria-labelledby="date-tab">
-                
-
-                <form action="" id="year-form">
-
-                    <div class="relative max-w-xs md:drop-shadow-lg lg:mx-[8.5rem] md:mx-20 mx-10 flex space-x-2">
-                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                            </svg>
-                        </div>
-                        <input id="year" min="1900" max="2100" type="number"
-                        class="text-[#154e49] bg-gray-50 border border-[#154e49] rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                        placeholder="Select Year">
-                        <button type="submit"
-                            class="w-fit text-white py-2 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold md:text-sm text-xs">SEARCH</button>
-                    </div>
-                </form>
-
-                <div id="year-report-div">
-
-                    <div
-                        class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
-                        <table id="year-report" hidden class="w-full text-sm text-white text-center">
-    
-                            <thead class="uppercase text-xs bg-[#154e49]">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">Category</th>
-                                    <th scope="col" class="px-6 py-3">Amount</th>
-                                    <th scope="col" class="px-6 py-3">Description</th>
-                                </tr>
-                            </thead>
-                            <tbody id="year-table-body">
-    
-                            </tbody>
-    
-    
-                        </table>
-                    </div>
-    
-                    <div id="year-download-btn" hidden class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
-                        <button type=""
-                                class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
-                    </div>
-    
-                    <div id="noYearRecords" hidden class="relative w-4/5  mt-10 lg:mx-[33rem] md:mx-60 mx-24  drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
-                        <h3>Records Not Available</h3>
-                    </div>
-                </div>
-
             </div>
         </div>
+
 
 
 
