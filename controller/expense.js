@@ -1,4 +1,4 @@
-// const Expense = require('../models/expense');
+const Expense = require('../models/expense');
 
 const sequelize = require('../util/database');
 
@@ -6,9 +6,30 @@ const UserServices=require('../services/userServices');
 
 exports.getExpenses = async (req, res) => {
     try {
+        const page=Number(req.query.page) || 1;
+        const expenses_per_page=2;
 
-        const expenses = await UserServices.getExpenses(req);
-        res.status(200).json(expenses);
+        const totalExpenses=await Expense.count({where:{userId:req.user.id}});
+
+        const expenses = await UserServices.getExpenses(req,{
+            offset:(page-1) * expenses_per_page,
+            limit:expenses_per_page
+        });
+
+        
+
+        const pageData={
+            expenses:expenses,
+            currentPage:page,
+            hasNextPage: expenses_per_page* page < totalExpenses,
+            nextPage:page+1,
+            hasPreviousPage:page>1,
+            previousPage:page-1,
+            total:totalExpenses
+        }
+
+
+        res.status(200).json({expenses,pageData});
     }
     catch (err) {
         console.log(err);
