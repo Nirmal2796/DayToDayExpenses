@@ -5,6 +5,7 @@ const Eul = document.getElementById('expenses-list');
 const EulDiv = document.getElementById('expenses-list-div');
 const rzp_button=document.getElementById("buy-btn");
 const noExpenseRecords=document.getElementById('noExpenseRecords');
+const pagination=document.getElementById('pagination');
 
 const form = document.getElementById('add-expense-form');
 
@@ -57,6 +58,7 @@ function alertBuyPremium(e){
 async function DomLoad() {
     try{
 
+        const page=1;
         const decodedToken=parseJwt(token);
 
         if(decodedToken.ispremiumuser==true){
@@ -67,7 +69,7 @@ async function DomLoad() {
             document.getElementById("leaderboard-tab").addEventListener('click',alertBuyPremium);
         }
 
-        await getExpenses();
+        await getExpenses(page);
         
             // await showDownloadedFiles();
 
@@ -118,29 +120,33 @@ async function onSubmit(e) {
 
 
 //get expenses
-async function getExpenses(){
+async function getExpenses(page){
     try{
 
+       
         // console.log(rowsperpage);
 
         
         // const token=localStorage.getItem('token');
-        const res = await axios.get('http://localhost:3000/get-expenses',{headers:{'Auth':token}});
+        const res = await axios.get(`http://localhost:3000/get-expenses?page=${page}`,{headers:{'Auth':token}});
 
-        const expenses=res.data;
-        // console.log(res.data);
-
-
+        const expenses=res.data.expenses;
+        // console.log(res.data.expenses);
+       
+       
         if(expenses.length > 0){
             
+            
+            document.getElementById('expenses-list-body').innerHTML='';
             // noofrows.hidden=false;
 
             for (let i in expenses) {
                 showOnScreen(expenses[i]);
             }
 
+            // console.log(res.data.pageData);
             // PaginaitonList.hidden=false;
-            // showPagination(res.data.expense_Data);
+            showPagination(res.data.pageData);
         }
         else{
             EulDiv.classList.toggle('hidden');
@@ -192,6 +198,7 @@ function showOnScreen(obj){
 
     // Eul.innerHTML=Eul.innerHTML+child;
     // Eul.scrollIntoView();
+    // showPagination();
 }
 
 
@@ -241,6 +248,69 @@ async function buyPremium (e){
     razorpayObject.open();
     e.preventDefault();
 
+
+
+}
+
+
+
+
+//SHOW PAGINATION
+
+function showPagination(pageData){
+
+    // console.log("pageData",pageData);
+
+    pagination.innerHTML='';
+    
+    pagination.hidden=false;
+
+        if(pageData.hasPreviousPage){
+
+            // console.log(pageData.nextPage);
+
+          
+                const prevBtn=document.createElement('button');
+                prevBtn.innerHTML=pageData.previousPage;
+                prevBtn.classList.add('px-3', 'h-8', 'text-sm', 'font-medium', 'text-white', 'bg-[#154e49]','hover:text-[#FBB04B]','hover:underline','hover:scale-125', 'rounded-full');
+                // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
+          
+            prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage)); 
+
+            // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
+
+            pagination.appendChild(prevBtn);
+
+        }
+
+        const currentBtn=document.createElement('button');
+        currentBtn.innerHTML=pageData.currentPage;
+        currentBtn.classList.add('px-3', 'h-8', 'text-sm', 'font-medium', 'text-white', 'bg-[#154e49]','hover:text-[#FBB04B]','hover:underline','hover:scale-125', 'rounded-full');
+        // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
+  
+        currentBtn.addEventListener('click',()=>getExpenses(pageData.currentPage)); 
+
+    // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
+
+    pagination.appendChild(currentBtn);
+        
+
+       
+        
+       if(pageData.hasNextPage){
+
+        const nextBtn=document.createElement('button');
+        nextBtn.innerHTML=pageData.nextPage;
+        nextBtn.classList.add('px-3', 'h-8', 'text-sm', 'font-medium', 'text-white', 'bg-[#154e49]','hover:text-[#FBB04B]','hover:underline', 'hover:scale-125','rounded-full');
+        // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
+  
+        nextBtn.addEventListener('click',()=>getExpenses(pageData.nextPage)); 
+
+    // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
+
+    pagination.appendChild(nextBtn);
+
+    }
 
 
 }
