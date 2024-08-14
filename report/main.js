@@ -169,10 +169,10 @@ async function downlodReport(e) {
 
     const res = await axios.get(`http://localhost:3000/download-report/${dateVal}`, { headers: { 'Auth': token } });
 
+    console.log
     if (res.status == 200) {
         var a = document.createElement('a');
         a.href = res.data.fileURL;
-        a.download = 'MyExpenses.txt';
         a.click();
     }
     else {
@@ -189,7 +189,6 @@ async function downloadMonthReport(e) {
     if (res.status == 200) {
         var a = document.createElement('a');
         a.href = res.data.fileURL;
-        a.download = 'MyMonthlyExpenses.csv';
         a.click();
     }
     else {
@@ -207,7 +206,6 @@ async function downloadYearReport(e) {
     if (res.status == 200) {
         var a = document.createElement('a');
         a.href = res.data.fileURL;
-        a.download = 'MyYearlyExpenses.csv';
         a.click();
     }
     else {
@@ -241,7 +239,7 @@ async function showDownloadedFiles(e) {
         for (let f in files.data) {
             const newRow = `<tr id=${files.data[f].id}  class="list-group-item odd:bg-white even:bg-[#799e9b] text-[#154e49] font-semibold  border-b">
                             <td class="px-6 py-4">${files.data[f].date} </td> 
-                            <td class="px-6 py-4"><a href='${files.data[f].fileURL}' class='hover:text-blue-600 underline'>LINK</a></td> 
+                            <td class="px-6 py-4"><a href='${files.data[f].fileURL}' class='hover:text-[#FBB04B] underline'>LINK</a></td> 
                             
                             </tr>`;
 
