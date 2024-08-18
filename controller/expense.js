@@ -7,7 +7,7 @@ const UserServices=require('../services/userServices');
 exports.getExpenses = async (req, res) => {
     try {
         const page=Number(req.query.page) || 1;
-        const expenses_per_page=2;
+        const expenses_per_page=Number(req.query.limit) ;
 
         const totalExpenses=await Expense.count({where:{userId:req.user.id}});
 
@@ -26,7 +26,6 @@ exports.getExpenses = async (req, res) => {
             hasPreviousPage:page>1,
             previousPage:page-1,
             total:totalExpenses,
-            firstPage:1,
             lastPage:Math.ceil(totalExpenses/expenses_per_page)
         }
 
