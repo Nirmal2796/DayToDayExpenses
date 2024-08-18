@@ -25,7 +25,9 @@ exports.getExpenses = async (req, res) => {
             nextPage:page+1,
             hasPreviousPage:page>1,
             previousPage:page-1,
-            total:totalExpenses
+            total:totalExpenses,
+            firstPage:1,
+            lastPage:Math.ceil(totalExpenses/expenses_per_page)
         }
 
 
