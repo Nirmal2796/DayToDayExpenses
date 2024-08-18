@@ -5,9 +5,12 @@ const Eul = document.getElementById('expenses-list');
 const EulDiv = document.getElementById('expenses-list-div');
 const rzp_button = document.getElementById("buy-btn");
 const noExpenseRecords = document.getElementById('noExpenseRecords');
+const rowsPerPage=document.getElementById('rowsPerPage');
 const pagination = document.getElementById('pagination');
 
+
 const form = document.getElementById('add-expense-form');
+
 
 let lastPage=1;
 
@@ -41,6 +44,12 @@ function showPremium() {
 }
 
 
+//rows per page
+rowsPerPage.onchange=async()=>{
+    localStorage.setItem('rowsPerPage',rowsPerPage.value)
+    await getExpenses(1,0,rowsPerPage.value);
+}
+
 //noRecordsAvailable
 function noRecordsAvailable() {
     EulDiv.classList.toggle('hidden');
@@ -62,6 +71,7 @@ async function DomLoad() {
     try {
 
         const page = 1;
+        const rowsperpage=localStorage.getItem(rowsPerPage);
         const decodedToken = parseJwt(token);
 
         if (decodedToken.ispremiumuser == true) {
@@ -72,7 +82,7 @@ async function DomLoad() {
             document.getElementById("leaderboard-tab").addEventListener('click', alertBuyPremium);
         }
 
-        await getExpenses(page, 0);
+        await getExpenses(page, 0,rowsperpage);
 
         // await showDownloadedFiles();
 
@@ -124,7 +134,7 @@ async function onSubmit(e) {
 
 
 //get expenses
-async function getExpenses(page, flag) {
+async function getExpenses(page, flag,rowsPerPage) {
     try {
 
 
@@ -132,7 +142,7 @@ async function getExpenses(page, flag) {
 
 
         // const token=localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:3000/get-expenses?page=${page}`, { headers: { 'Auth': token } });
+        const res = await axios.get(`http://localhost:3000/get-expenses?page=${page}&limit=${rowsPerPage}`, { headers: { 'Auth': token } });
 
         const expenses = res.data.expenses;
         // console.log(res.data.expenses);
@@ -179,7 +189,7 @@ async function removeExpense(id) {
         const data = await axios.delete(`http://localhost:3000/delete-expense/${id}`, { headers: { 'Auth': token } });
         document.getElementById(id).remove();
         // console.log(data);
-       const currentPage=document.getElementById('1');
+      
         // if()
         if (Eul.rows.length <= 1 && lastPage==1) {
             noRecordsAvailable();
@@ -285,6 +295,8 @@ function showPagination(pageData) {
 
     console.log("pageData", pageData);
 
+    const rowsperpage=localStorage.getItem(rowsPerPage);
+
     pagination.innerHTML = '';
 
     pagination.hidden = false;
@@ -304,7 +316,7 @@ function showPagination(pageData) {
         prevBtn.classList.add('px-3', 'h-8', 'text-sm', 'font-medium', 'text-white', 'bg-[#154e49]', 'hover:text-[#FBB04B]', 'hover:underline', 'hover:scale-125', 'rounded-full');
         // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
 
-        prevBtn.addEventListener('click', () => getExpenses(pageData.previousPage,0));
+        prevBtn.addEventListener('click', () => getExpenses(pageData.previousPage,0,rowsperpage));
 
         // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
 
@@ -318,7 +330,7 @@ function showPagination(pageData) {
     currentBtn.classList.add('px-3', 'h-8', 'text-sm', 'font-medium', 'text-white', 'bg-[#154e49]', 'hover:text-[#FBB04B]', 'hover:underline', 'hover:scale-125', 'rounded-full');
     // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
 
-    currentBtn.addEventListener('click', () => getExpenses(pageData.currentPage,0));
+    currentBtn.addEventListener('click', () => getExpenses(pageData.currentPage,0,rowsperpage));
 
     // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
 
@@ -334,7 +346,7 @@ function showPagination(pageData) {
         nextBtn.classList.add('px-3', 'h-8', 'text-sm', 'font-medium', 'text-white', 'bg-[#154e49]', 'hover:text-[#FBB04B]', 'hover:underline', 'hover:scale-125', 'rounded-full');
         // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
 
-        nextBtn.addEventListener('click', () => getExpenses(pageData.nextPage,0));
+        nextBtn.addEventListener('click', () => getExpenses(pageData.nextPage,0,rowsperpage));
 
         // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
 
@@ -357,7 +369,7 @@ function showPagination(pageData) {
         lastBtn.classList.add('px-3', 'h-8', 'text-sm', 'font-medium', 'text-white', 'bg-[#154e49]', 'hover:text-[#FBB04B]', 'hover:underline', 'hover:scale-125', 'rounded-full');
         // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
 
-        lastBtn.addEventListener('click', () => getExpenses(pageData.lastPage,0));
+        lastBtn.addEventListener('click', () => getExpenses(pageData.lastPage,0,rowsperpage));
 
         // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
 

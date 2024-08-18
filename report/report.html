@@ -15,8 +15,7 @@
     <header class="bg-[#154e49] py-2">
         <nav class="flex justify-between items-center w-[95%] mx-auto">
             <div class="w-1/2 md:w-auto">
-                <a class="hover:underline text-white font-semibold hover:text-[#FBB04B]"
-                    href="../dashboard/home.html">
+                <a class="hover:underline text-white font-semibold hover:text-[#FBB04B]" href="../dashboard/home.html">
                     <img src="../images/logo4.png" alt="Logo" class="lg:w-80 w-44">
                 </a>
             </div>
@@ -72,7 +71,8 @@
                 </li>
                 <li>
                     <button type="button" data-tabs-target="#downloads-div" id="downloads-tab" role="tab"
-                        class="inline-block p-2 md:p-3 hover:text-[#FBB04B] hover:border-b-4 hover:border-[#FBB04B] hover:scale-125" onclick=showDownloadedFiles()>DOWNLOADS</button>
+                        class="inline-block p-2 md:p-3 hover:text-[#FBB04B] hover:border-b-4 hover:border-[#FBB04B] hover:scale-125"
+                        onclick=showDownloadedFiles()>DOWNLOADS</button>
                 </li>
             </ul>
         </div>
@@ -161,25 +161,22 @@
                                 class="relative w-fit  mt-10 drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
                                 <h3 class="xl:ml-[33rem] lg:ml-[25rem] md:ml-72 ml-24">Records Not Available</h3>
                             </div>
-                           
-                        </div>
-                        </div>
 
-
+                        </div>
                     </div>
+
 
                     <div id="month-div">
                         <form action="" id="month-form">
-
-                            <div
-                                class="relative max-w-xs md:drop-shadow-lg lg:mx-[8.5rem] md:mx-20 mx-10 flex space-x-2">
+    
+                            <div class="relative max-w-xs md:drop-shadow-lg lg:mx-[8.5rem] md:mx-20 mx-10 flex space-x-2">
                                 <!-- <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                    </svg>
-                                </div> -->
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                        </svg>
+                                    </div> -->
                                 <input id="month" type="month"
                                     class="text-[#154e49] bg-gray-50 border border-[#154e49] rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                                     placeholder="Select Month">
@@ -187,13 +184,13 @@
                                     class="w-fit text-white py-2 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">SEARCH</button>
                             </div>
                         </form>
-
+    
                         <div id="month-report-div">
-
+    
                             <div
                                 class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
                                 <table id="month-report" hidden class="w-full text-sm text-white text-center">
-
+    
                                     <thead class="uppercase text-xs bg-[#154e49]">
                                         <tr>
                                             <th scope="col" class="px-6 py-3">Category</th>
@@ -202,35 +199,34 @@
                                         </tr>
                                     </thead>
                                     <tbody id="month-table-body">
-
+    
                                     </tbody>
-
-
+    
+    
                                 </table>
                             </div>
-
+    
                             <div id="month-download-btn" hidden
                                 class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
                                 <button type=""
                                     class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
                             </div>
-
-
+    
+    
                             <div id="noMonthRecords" hidden
                                 class="relative w-fit  mt-10 drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
                                 <h3 class="xl:ml-[33rem] lg:ml-[25rem] md:ml-72 ml-24">Records Not Available</h3>
                             </div>
                         </div>
-
+    
                     </div>
-
+    
                     <div id="year-div">
-
-
+    
+    
                         <form action="" id="year-form">
-
-                            <div
-                                class="relative max-w-xs md:drop-shadow-lg lg:mx-[8.5rem] md:mx-20 mx-10 flex space-x-2">
+    
+                            <div class="relative max-w-xs md:drop-shadow-lg lg:mx-[8.5rem] md:mx-20 mx-10 flex space-x-2">
                                 <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -245,13 +241,13 @@
                                     class="w-fit text-white py-2 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold md:text-sm text-xs">SEARCH</button>
                             </div>
                         </form>
-
+    
                         <div id="year-report-div">
-
+    
                             <div
                                 class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
                                 <table id="year-report" hidden class="w-full text-sm text-white text-center">
-
+    
                                     <thead class="uppercase text-xs bg-[#154e49]">
                                         <tr>
                                             <th scope="col" class="px-6 py-3">Category</th>
@@ -260,34 +256,34 @@
                                         </tr>
                                     </thead>
                                     <tbody id="year-table-body">
-
+    
                                     </tbody>
-
-
+    
+    
                                 </table>
                             </div>
-
+    
                             <div id="year-download-btn" hidden
                                 class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
                                 <button type=""
                                     class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
                             </div>
-
+    
                             <div id="noYearRecords" hidden
                                 class="relative w-fit  mt-10 drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
                                 <h3 class="xl:ml-[33rem] lg:ml-[25rem] md:ml-72 ml-24">Records Not Available</h3>
                             </div>
                         </div>
-
+    
                     </div>
                 </div>
+
             </div>
-
             <div id="downloads-div">
-
+    
                 <div class="relative overflow-x-auto md:w-1/2 w-fit mx-auto rounded-t-3xl md:drop-shadow-md ">
                     <table id="downloads-table" class="w-full md:text-base text-sm text-white text-center">
-
+    
                         <thead class="uppercase md:text-base text-xs bg-[#154e49]">
                             <tr>
                                 <th scope="col" class="px-6 py-3">Date</th>
@@ -295,19 +291,21 @@
                             </tr>
                         </thead>
                         <tbody id="downloads-table-body">
-
+    
                         </tbody>
-
-
+    
+    
                     </table>
-
+    
                 </div>
-
+    
                 <div id="noDownloadedRecords" hidden
-                                class="relative w-fit  mt-10 drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
-                                <h3 class="xl:ml-[33rem] lg:ml-[25rem] md:ml-72 ml-24">Records Not Available</h3>
+                    class="relative w-fit  mt-10 drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
+                    <h3 class="xl:ml-[33rem] lg:ml-[25rem] md:ml-72 ml-24">Records Not Available</h3>
                 </div>
             </div>
+        </div>
+
         </div>
 
 

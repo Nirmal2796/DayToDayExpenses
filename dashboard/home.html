@@ -95,9 +95,36 @@
 
 
 
-        <div id="expenses-list-div"
-            class="overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl drop-shadow-md ">
+        <div>
+            <form action="" id="rowsPerPage-form" class="mt-10">
 
+                <div
+                    class="relative max-w-xs md:drop-shadow-lg lg:mx-[9rem] md:mx-20 mx-10 flex space-x-2 items-center">
+                    <label for="pageSize"
+                        class="text-[#154e49] font-semibold md:font-bold  md:text-base text-sm">Rows per Page</label>
+                    <select id="rowsPerPage" class="text-[#154e49]  bg-gray-50 border border-gray-200 rounded-md inline-block ">
+                        <option selected>Select</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="50">60</option>
+                        <option value="50">70</option>
+                        <option value="50">80</option>
+                        <option value="50">90</option>
+                        <option value="50">100</option>
+                    </select>
+                    
+                </div>
+            </form>
+        </div>
+
+
+        <div id="expenses-list-div"
+            class="overflow-x-auto w-4/5  mt-5 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl drop-shadow-md ">
+
+            
             <table id="expenses-list" class="w-full text-sm  text-white text-center">
                 <thead class="uppercase text-xs bg-[#154e49]">
                     <tr>
@@ -117,15 +144,11 @@
 
 
             </table>
-            
-
-            
-
-
+       
             
         </div>
 
-        <div id="pagination" class="flex mt-10 lg:mx-[8.5rem] md:mx-20 mx-10">
+        <div id="pagination" class="flex mt-5 lg:mx-[8.5rem] md:mx-20 mx-10">
             <!-- Buttons -->
             <!-- <button class="px-2 h-8 text-sm font-medium text-white bg-[#154e49] hover:text-[#FBB04B] hover:underline rounded-full">
                 <svg class="w-3.5 h-3.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -144,8 +167,10 @@
                
             </button> -->
           </div>
+
         <div id="noExpenseRecords"  class="hidden relative w-fit  mt-10 drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
             <h3 class="xl:ml-[33rem] lg:ml-[25rem] md:ml-72 ml-24">Records Not Available</h3>
+            </div>
 
     </main>
 
