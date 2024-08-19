@@ -71,7 +71,8 @@ async function DomLoad() {
     try {
 
         const page = 1;
-        const rowsperpage=localStorage.getItem(rowsPerPage);
+        const rowsperpage=localStorage.getItem('rowsPerPage');
+        console.log(rowsperpage);
         const decodedToken = parseJwt(token);
 
         if (decodedToken.ispremiumuser == true) {
@@ -189,13 +190,14 @@ async function removeExpense(id) {
         const data = await axios.delete(`http://localhost:3000/delete-expense/${id}`, { headers: { 'Auth': token } });
         document.getElementById(id).remove();
         // console.log(data);
+        const rowsperpage=localStorage.getItem('rowsPerPage');
       
         // if()
         if (Eul.rows.length <= 1 && lastPage==1) {
             noRecordsAvailable();
         }
         else if(Eul.rows.length <= 1){
-            getExpenses(1,0);
+            getExpenses(1,0,rowsperpage);
         }
         // showLeaderBoard();
 
@@ -295,7 +297,8 @@ function showPagination(pageData) {
 
     console.log("pageData", pageData);
 
-    const rowsperpage=localStorage.getItem(rowsPerPage);
+    const rowsperpage=localStorage.getItem('rowsPerPage');
+    
 
     pagination.innerHTML = '';
 
