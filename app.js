@@ -1,10 +1,17 @@
-const express =require('express');
+const path=require('path');
+const fs=require('fs');
+
+const express = require('express');
 
 const cors=require('cors');
+const helemt=require('helmet');
+const morgan=require('morgan');
 
 require('dotenv').config(); 
 
 const app=express();
+
+
 
 const bodyParser=require('body-parser');
 
@@ -25,8 +32,13 @@ const downloadsRouter=require('./routes/downloads');
 const leaderboardRouter=require('./routes/leaderboard');
 const passwordRouter=require('./routes/password');
 
+const accessLogStream=fs.createWriteStream(path.join(__dirname, 'access.log'),{flags:'a'})
+
+app.use(helemt());
+app.use(morgan('combined',{stream:accessLogStream}));
 
 app.use(cors());
+
 
 app.use(bodyParser.json({extended:false}));
 

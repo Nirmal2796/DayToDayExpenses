@@ -19,7 +19,6 @@ exports.getExpenses = async (req, res) => {
         
 
         const pageData={
-            expenses:expenses,
             currentPage:page,
             hasNextPage: expenses_per_page* page < totalExpenses,
             nextPage:page+1,
