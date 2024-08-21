@@ -94,9 +94,28 @@ exports.downloadYearlyReport = async (req, res) => {
 exports.showDownloads=async (req,res)=>{
     try{
 
-        const downloads=await req.user.getDownloads();
+        const page=Number(req.query.page) || 1;
+        const downloads_per_page=Number(req.query.limit) ;
 
-        res.status(200).json(downloads);
+        const totalDownloads=await Downloads.count({where:{userId:req.user.id}});
+
+        const downloads=await req.user.getDownloads({
+            offset:(page-1) * downloads_per_page,
+            limit:downloads_per_page
+        });
+
+        const pageData={
+            currentPage:page,
+            hasNextPage: downloads_per_page* page < totalDownloads,
+            nextPage:page+1,
+            hasPreviousPage:page>1,
+            previousPage:page-1,
+            total:totalDownloads,
+            lastPage:Math.ceil(totalDownloads/downloads_per_page)
+        }
+
+
+        res.status(200).json({downloads,pageData});
 
     }
     catch (err) {
