@@ -7,18 +7,20 @@ const rzp_button = document.getElementById("buy-btn");
 const noExpenseRecords = document.getElementById('noExpenseRecords');
 const rowsPerPage=document.getElementById('rowsPerPage');
 const pagination = document.getElementById('pagination');
+const rowsPerPageDiv=document.getElementById('rowsPerPage-div');
 
 
 const form = document.getElementById('add-expense-form');
-
-
-let lastPage=1;
 
 
 form.addEventListener('submit', onSubmit);
 rzp_button.addEventListener('click', buyPremium);
 
 document.addEventListener('DOMContentLoaded', DomLoad);
+
+//PAGE
+let lastPage=1;
+let pageData;
 
 //token
 const token = localStorage.getItem('token');
@@ -55,6 +57,7 @@ function noRecordsAvailable() {
     EulDiv.classList.toggle('hidden');
     noExpenseRecords.classList.toggle('hidden');
     pagination.classList.toggle('hidden');
+    rowsPerPageDiv.classList.toggle('hidden');
 }
 
 //buyPremium alert
@@ -120,6 +123,10 @@ async function onSubmit(e) {
             if (EulDiv.classList.contains('hidden')) {
                 noRecordsAvailable();
             }
+            // console.log(pageData);
+            lastPage = pageData.lastPage;
+            // console.log(lastPage);
+            showPagination(pageData);
             showOnScreen(response.data.newExpense, 1);
 
             // showLeaderBoard();
@@ -147,7 +154,8 @@ async function getExpenses(page, flag,rowsPerPage) {
 
         const expenses = res.data.expenses;
         // console.log(res.data.expenses);
-
+        lastPage = res.data.pageData.lastPage;
+         pageData=res.data.pageData;
 
         if (expenses.length > 0) {
 
@@ -155,23 +163,21 @@ async function getExpenses(page, flag,rowsPerPage) {
             document.getElementById('expenses-list-body').innerHTML = '';
             // noofrows.hidden=false;
 
-            lastPage = res.data.pageData.lastPage;
+            
 
             for (let i in expenses) {
                 showOnScreen(expenses[i], flag);
             }
 
-            if (noExpenseRecords.classList.contains('hidden')) {
-                noExpenseRecords.classList.add('hidden');
-                EulDiv.classList.remove('hidden');
-            }
-            // console.log(res.data.pageData);
-            // PaginaitonList.hidden=false;
+            EulDiv.classList.remove('hidden');
+
             showPagination(res.data.pageData);
         }
         else {
+            // console.log(res.data.pageData);
             EulDiv.classList.toggle('hidden');
             noExpenseRecords.classList.toggle('hidden');
+            rowsPerPageDiv.classList.toggle('hidden');
         }
 
     }
@@ -213,10 +219,9 @@ function showOnScreen(obj, flag) {
 
    
     if (flag == 1) {
-        // console.log(typeof(lastPage));
-        // console.log(lastPage);
-        // console.log(document.getElementById(lastPage))
-        document.getElementById(lastPage).click();
+        if(noExpenseRecords.classList.contains('hidden')){
+            document.getElementById(lastPage).click();
+        }
     }
 
     const newRow = `<tr id=${obj.id}  class="list-group-item odd:bg-white even:bg-[#799e9b] text-[#154e49] font-semibold  border-b""> 
@@ -232,9 +237,6 @@ function showOnScreen(obj, flag) {
 
     Eul.getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', newRow);
 
-    // Eul.innerHTML=Eul.innerHTML+child;
-    // Eul.scrollIntoView();
-    // showPagination();
 }
 
 
@@ -295,7 +297,7 @@ async function buyPremium(e) {
 
 function showPagination(pageData) {
 
-    console.log("pageData", pageData);
+    // console.log("pageData", pageData);
 
     const rowsperpage=localStorage.getItem('rowsPerPage');
     
@@ -310,9 +312,7 @@ function showPagination(pageData) {
 
     if (pageData.hasPreviousPage) {
 
-        // console.log(pageData.nextPage);
-
-
+      
         const prevBtn = document.createElement('button');
         prevBtn.innerHTML = pageData.previousPage;
         prevBtn.setAttribute('id',pageData.previousPage);
@@ -331,11 +331,8 @@ function showPagination(pageData) {
     currentBtn.innerHTML = pageData.currentPage;
     currentBtn.setAttribute('id',pageData.currentPage);
     currentBtn.classList.add('px-3', 'h-8', 'text-sm', 'font-medium', 'text-white', 'bg-[#154e49]', 'hover:text-[#FBB04B]', 'hover:underline', 'hover:scale-125', 'rounded-full');
-    // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
-
+   
     currentBtn.addEventListener('click', () => getExpenses(pageData.currentPage,0,rowsperpage));
-
-    // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
 
     pagination.appendChild(currentBtn);
 
@@ -347,11 +344,8 @@ function showPagination(pageData) {
         nextBtn.innerHTML = pageData.nextPage;
         nextBtn.setAttribute('id',pageData.nextPage);
         nextBtn.classList.add('px-3', 'h-8', 'text-sm', 'font-medium', 'text-white', 'bg-[#154e49]', 'hover:text-[#FBB04B]', 'hover:underline', 'hover:scale-125', 'rounded-full');
-        // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
 
         nextBtn.addEventListener('click', () => getExpenses(pageData.nextPage,0,rowsperpage));
-
-        // prevBtn.addEventListener('click',()=>getExpenses(pageData.previouePage,rowsperpage.value)); 
 
         pagination.appendChild(nextBtn);
 

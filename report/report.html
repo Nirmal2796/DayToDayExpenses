@@ -151,12 +151,35 @@
 
                             </div>
 
-                            <div id="date-download-btn" hidden
-                                class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
-                                <button type=""
-                                    class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
-                            </div>
+                            <div class="flex items-center">
 
+                                <div id="date-pagination" class="flex mt-5 lg:mx-[8.5rem] md:mx-20 mx-10">
+                                    <!-- Buttons -->
+                                    <!-- <button class="px-2 h-8 text-sm font-medium text-white bg-[#154e49] hover:text-[#FBB04B] hover:underline rounded-full">
+                                        <svg class="w-3.5 h-3.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                                          </svg>
+                                       
+                                    </button> -->
+                                    <!-- <button class="px-3 h-8 hover:scale-125 text-sm font-medium text-white bg-[#154e49] hover:text-[#FBB04B] hover:underline rounded-full">
+                                        1                 
+                                    </button> -->
+                        
+                                    <!-- <button class="px-2 h-8 text-sm font-medium text-white bg-[#154e49] hover:text-[#FBB04B]  hover:underline rounded-full">                 
+                                        <svg class="w-3.5 h-3.5  rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                          </svg>
+                                       
+                                    </button> -->
+                                </div>
+    
+                                <div id="date-download-btn" hidden
+                                    class="relative mt-5 xl:mx-[40rem] lg:mx-[30rem] md:mx-[22rem] mx-20  md:drop-shadow-md">
+                                    <button type=""
+                                        class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
+                                </div>
+                            </div>
+                            
                             <div id="noDateRecords" hidden
                                 class="relative w-fit  mt-10 drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
                                 <h3 class="xl:ml-[33rem] lg:ml-[25rem] md:ml-72 ml-24">Records Not Available</h3>
@@ -186,7 +209,7 @@
                         </form>
     
                         <div id="month-report-div">
-    
+
                             <div
                                 class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
                                 <table id="month-report" hidden class="w-full text-sm text-white text-center">
@@ -206,10 +229,17 @@
                                 </table>
                             </div>
     
-                            <div id="month-download-btn" hidden
-                                class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
-                                <button type=""
-                                    class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
+                            <div class="flex items-center">
+
+                                <div id="month-pagination" class="flex mt-5 lg:mx-[8.5rem] md:mx-20 mx-10">
+                                    
+                                </div>
+    
+                                <div id="month-download-btn" hidden
+                                    class="relative mt-5 xl:mx-[40rem] lg:mx-[25rem] md:mx-[15rem] mx-8  md:drop-shadow-md">
+                                    <button type=""
+                                        class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
+                                </div>
                             </div>
     
     
@@ -244,6 +274,7 @@
     
                         <div id="year-report-div">
     
+                           
                             <div
                                 class="relative overflow-x-auto w-4/5  mt-10 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl md:drop-shadow-md ">
                                 <table id="year-report" hidden class="w-full text-sm text-white text-center">
@@ -263,11 +294,21 @@
                                 </table>
                             </div>
     
-                            <div id="year-download-btn" hidden
-                                class="relative mt-10 xl:mx-[65rem] lg:mx-[50rem] md:mx-[35rem] mx-60 md:drop-shadow-md">
-                                <button type=""
-                                    class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
+
+                            <div class="flex items-center">
+
+                                <div id="year-pagination" class="flex mt-5 lg:mx-[8.5rem] md:mx-20 mx-10">
+                                    
+                                </div>
+    
+                                <div id="year-download-btn" hidden
+                                    class="relative mt-5 xl:mx-[40rem] lg:mx-[25rem] md:mx-[15rem] mx-8  md:drop-shadow-md">
+                                    <button type=""
+                                        class="w-fit text-white py-3 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold  md:text-sm text-xs">DOWNLOAD</button>
+                                </div>
                             </div>
+    
+                           
     
                             <div id="noYearRecords" hidden
                                 class="relative w-fit  mt-10 drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
@@ -299,6 +340,10 @@
     
                 </div>
     
+                <div id="download-pagination" class="flex mt-10 xl:mx-[22rem] lg:mx-[16rem] md:mx-52 mx-24">
+                   
+                </div>
+
                 <div id="noDownloadedRecords" hidden
                     class="relative w-fit  mt-10 drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
                     <h3 class="xl:ml-[33rem] lg:ml-[25rem] md:ml-72 ml-24">Records Not Available</h3>
