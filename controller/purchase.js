@@ -12,8 +12,8 @@ exports.purchasePremium = async (req, res) => {
     try {
 
         const rzp = new Razorpay({
-            key_id: 'rzp_test_BPtSSVp3iZJOGc',
-            key_secret: 'xsOrQNuNCey0eBphz7e4XREA'
+            key_id: process.env.RAZORPAY_KEY_ID,
+            key_secret: process.env.RAZORPAY_KEY_SECRET
         });
 
         const amount = 2500;
