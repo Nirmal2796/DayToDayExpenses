@@ -102,7 +102,7 @@ async function DomLoad() {
 async function onSubmit(e) {
     e.preventDefault();
 
-    if (amount.value == '' || desc.value == '') {
+    if (amount.value == '' || desc.value == '' || category.value=='Select') {
         msg.innerHTML = '<b>Please enter all fields</b>';
 
         setTimeout(() => {
