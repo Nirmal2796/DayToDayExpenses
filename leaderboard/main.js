@@ -11,7 +11,7 @@ async function showLeaderBoard() {
 
     const token = localStorage.getItem('token');
     console.log(token);
-    const result = await axios.get("http://localhost:3000/showleaderboard", { headers: { "Auth": token } })
+    const result = await axios.get("http://44.195.41.14:3000/showleaderboard", { headers: { "Auth": token } })
 
     console.log(result.data);
 

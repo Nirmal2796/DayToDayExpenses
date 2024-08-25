@@ -118,7 +118,7 @@ async function onSubmit(e) {
                 category: category.value
             };
             // console.log(expense);
-            let response = await axios.post("http://localhost:3000/add-expense/", expense, { headers: { 'Auth': token } });
+            let response = await axios.post("http://44.195.41.14:3000/add-expense/", expense, { headers: { 'Auth': token } });
             // console.log(response.data.newExpense);
             if (EulDiv.classList.contains('hidden')) {
                 noRecordsAvailable();
@@ -150,7 +150,7 @@ async function getExpenses(page, flag,rowsPerPage) {
 
 
         // const token=localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:3000/get-expenses?page=${page}&limit=${rowsPerPage}`, { headers: { 'Auth': token } });
+        const res = await axios.get(`http://44.195.41.14:3000/get-expenses?page=${page}&limit=${rowsPerPage}`, { headers: { 'Auth': token } });
 
         const expenses = res.data.expenses;
         // console.log(res.data.expenses);
@@ -193,7 +193,7 @@ async function removeExpense(id) {
     try {
 
         // const token=localStorage.getItem('token');
-        const data = await axios.delete(`http://localhost:3000/delete-expense/${id}`, { headers: { 'Auth': token } });
+        const data = await axios.delete(`http://44.195.41.14:3000/delete-expense/${id}`, { headers: { 'Auth': token } });
         document.getElementById(id).remove();
         // console.log(data);
         const rowsperpage=localStorage.getItem('rowsPerPage');
@@ -246,14 +246,14 @@ async function buyPremium(e) {
 
 
     // const token=localStorage.getItem('token');
-    const res = await axios.get('http://localhost:3000/buypremium', { headers: { 'Auth': token } });
+    const res = await axios.get('http://44.195.41.14:3000/buypremium', { headers: { 'Auth': token } });
 
     console.log(res.data.order.id);
     var options = {
         "key": res.data.key_id,
         "order_id": res.data.order.id,
         "handler": async function (res) {
-            const result = await axios.post('http://localhost:3000/updateTransactions', {
+            const result = await axios.post('http://44.195.41.14:3000/updateTransactions', {
                 order_id: options.order_id,
                 payment_id: res.razorpay_payment_id,
                 status: 'successful'
@@ -273,7 +273,7 @@ async function buyPremium(e) {
 
     razorpayObject.on('payment.failed', async (res) => {
         console.log(res);
-        const result = await axios.post('http://localhost:3000/updateTransactions', {
+        const result = await axios.post('http://44.195.41.14:3000/updateTransactions', {
             order_id: options.order_id,
             payment_id: res.razorpay_payment_id,
             status: 'failed'

@@ -30,7 +30,7 @@ const forgot_form = document.getElementById('forgot-form');
 
                 // console.log(Email);
 
-                const result = await axios.post("http://localhost:3000/forgotpassword", Email);
+                const result = await axios.post("http://44.195.41.14:3000/forgotpassword", Email);
 
                 // console.log(result);
 

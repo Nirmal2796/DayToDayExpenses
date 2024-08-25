@@ -82,7 +82,7 @@ async function showDateReport(e) {
 //DATE REPORT
 async function dateReport(dateVal,page,rowsperpage){
 
-    const expenses = await axios.get(`http://localhost:3000/get-report/${dateVal}?page=${page}&limit=${rowsperpage}`, { headers: { 'Auth': token } });
+    const expenses = await axios.get(`http://44.195.41.14:3000/get-report/${dateVal}?page=${page}&limit=${rowsperpage}`, { headers: { 'Auth': token } });
     
     console.log(expenses.data.expenses);
     console.log(expenses.data.pageData);
@@ -125,7 +125,7 @@ async function showMonthReport(e) {
 //MONTH REPORT
 async function monthReport(monthVal,page,rowsperpage) {
 
-    const expenses = await axios.get(`http://localhost:3000/get-monthReport?month=${monthVal.split('-')[1]}&year=${monthVal.split('-')[0]}&page=${page}&limit=${rowsperpage} `, { headers: { 'Auth': token } });
+    const expenses = await axios.get(`http://44.195.41.14:3000/get-monthReport?month=${monthVal.split('-')[1]}&year=${monthVal.split('-')[0]}&page=${page}&limit=${rowsperpage} `, { headers: { 'Auth': token } });
 
     
     console.log(expenses.data.expenses);
@@ -166,7 +166,7 @@ async function showYearReport(e) {
 //YEAR REPORT
 async function yearReport(yearVal,page,rowsperpage) {
 
-    const expenses = await axios.get(`http://localhost:3000/get-yearReport/${yearVal}?page=${page}&limit=${rowsperpage} `, { headers: { 'Auth': token } });
+    const expenses = await axios.get(`http://44.195.41.14:3000/get-yearReport/${yearVal}?page=${page}&limit=${rowsperpage} `, { headers: { 'Auth': token } });
 
     
     console.log(expenses.data.expenses);
@@ -216,7 +216,7 @@ function showOnScreen(obj, table) {
 //DOWNLOAD DATE REPORTS
 async function downlodReport(e) {
 
-    const res = await axios.get(`http://localhost:3000/download-report/${dateVal}`, { headers: { 'Auth': token } });
+    const res = await axios.get(`http://44.195.41.14:3000/download-report/${dateVal}`, { headers: { 'Auth': token } });
 
     console.log
     if (res.status == 200) {
@@ -233,7 +233,7 @@ async function downlodReport(e) {
 //DOWNLOAD MONTH REPORTS
 async function downloadMonthReport(e) {
 
-    const res = await axios.get(`http://localhost:3000/download-monthReport?month=${monthVal.split('-')[1]}&year=${monthVal.split('-')[0]} `, { headers: { 'Auth': token } });
+    const res = await axios.get(`http://44.195.41.14:3000/download-monthReport?month=${monthVal.split('-')[1]}&year=${monthVal.split('-')[0]} `, { headers: { 'Auth': token } });
 
     if (res.status == 200) {
         var a = document.createElement('a');
@@ -250,7 +250,7 @@ async function downloadMonthReport(e) {
 //DOWNLOAD YEAR REPORTS
 async function downloadYearReport(e) {
 
-    const res = await axios.get(`http://localhost:3000/download-yearReport/${yearVal} `, { headers: { 'Auth': token } });
+    const res = await axios.get(`http://44.195.41.14:3000/download-yearReport/${yearVal} `, { headers: { 'Auth': token } });
 
     if (res.status == 200) {
         var a = document.createElement('a');
@@ -275,7 +275,7 @@ async function showDownloadedFiles() {
 //DOWNLOADED FILES
 async function downloadedFiles(page,rowsperpage) {
     
-    const files = await axios.get(`http://localhost:3000/showDownloads?page=${page}&limit=${rowsperpage}`, { headers: { 'Auth': token } });
+    const files = await axios.get(`http://44.195.41.14:3000/showDownloads?page=${page}&limit=${rowsperpage}`, { headers: { 'Auth': token } });
 
     console.log(files.data.downloads);
 
