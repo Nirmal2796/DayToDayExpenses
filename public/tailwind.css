@@ -1,0 +1,40 @@
+@tailwind base;
+
+.hide{
+    @apply overflow-hidden
+}
+
+@tailwind components;
+@tailwind utilities;
+
+.signup-mode-animation{
+    @apply ease-in-out duration-1000
+}
+.signup-mode-circle{
+    @apply rotate-180  translate-x-[300px] md:translate-x-[600px] lg:translate-x-[800px]
+}
+
+.signup-mode-signup-div{
+    @apply rotate-180  -translate-y-[600px] opacity-0 pointer-events-none
+} 
+
+.signup-mode-login-div{
+      @apply rotate-180  translate-x-20 md:-translate-x-40 lg:-translate-x-40 pointer-events-auto opacity-100
+}
+
+.signup-mode-img1{
+    @apply -translate-x-[900px] 
+}
+
+.signup-mode-img2{
+    @apply md:translate-y-[200px] lg:translate-y-[500px] 
+}
+
+
+.signup-mode-formdiv{
+    @apply opacity-0  pointer-events-none
+}
+
+.signup-mode-signupForm{
+    @apply opacity-100 pointer-events-auto
+}

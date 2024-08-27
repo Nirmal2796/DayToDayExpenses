@@ -11,8 +11,6 @@ require('dotenv').config();
 
 const app=express();
 
-
-
 const bodyParser=require('body-parser');
 
 
@@ -34,14 +32,16 @@ const passwordRouter=require('./routes/password');
 
 const accessLogStream=fs.createWriteStream(path.join(__dirname, 'access.log'),{flags:'a'})
 
-app.use(helemt());
+app.use(helemt({ contentSecurityPolicy: false }));
 app.use(morgan('combined',{stream:accessLogStream}));
+
 
 app.use(cors());
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(bodyParser.json({extended:false}));
-
 
 app.use(userRouter);
 app.use(expenseRouter);
@@ -50,6 +50,11 @@ app.use(reportsRouter);
 app.use(downloadsRouter);
 app.use(leaderboardRouter);
 app.use(passwordRouter);
+
+app.use((req,res) => {
+    // console.log("URL>>>",req.url);
+    res.sendFile(path.join(__dirname, `public/${req.url}`));
+});
 
 User.hasMany(Expense);
 Expense.belongsTo(User);
