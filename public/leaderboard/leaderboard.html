@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="content-security-policy" content="connect-src 'self' https://unpkg.com  https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval' ;"> -->
+    <link rel="stylesheet" href="../style.css">
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="bg-[#154e49] py-2">
+        <nav class="flex justify-between items-center w-[95%] mx-auto">
+            <div class="w-1/2 md:w-auto">
+                <a class="hover:underline text-white font-semibold hover:text-[#FBB04B]"
+                    href="../dashboard/home.html">
+                    <img src="../images/logo4.png" alt="Logo" class="lg:w-80 w-44">
+                </a>
+            </div>
+
+            <div id="slideover-bg" class="absolute inset-0 w-full h-full bg-gray-600 opacity-0 invisible"></div>
+
+            <div
+                class="hidden nav-links md:static absolute bg-[#154e49] md:min-h-fit min-h-[60vh] right-0 top-0 md:w-auto w-1/2 h-full md:flex items-center px-5">
+                <ul class="flex md:flex-row flex-col mt-20 md:mt-0 md:items-center lg:gap-16 gap-8">
+                    <li>
+                        <a class="hover:underline hover:scale-125 flex text-white font-semibold hover:text-[#FBB04B]"
+                            href="../dashboard/home.html">Home</a>
+                    </li>
+                    <li id="report-tab">
+                        <a class="hover:underline flex hover:scale-125 text-white font-semibold hover:text-[#FBB04B]"
+                            href="../report/report.html">Report <img src="../images/crown.png" alt=""
+                                class="size-5  mx-1"></a>
+                    </li>
+                    <li id="leaderboard-tab">
+                        <a class="hover:underline flex hover:scale-125 text-white font-semibold hover:text-[#FBB04B]"
+                            href="../leaderboard/leaderboard.html">LeaderBoard <img src="../images/crown.png" alt=""
+                                class="size-5  mx-1"></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <!-- <button id="buy-btn"
+                    class="w-fit text-xs md:text-base flex text-[#154e49] py-1 px-3 rounded-full bg-white font-bold">Buy
+                    Premium
+                    <img src="../images/crown.png" alt="" class="size-5 md:size-7"></button>
+                    <script src="https://checkout.razorpay.com/v1/checkout.js"></script> -->
+
+                <div id="premium_memb" class="">
+                    <h4 class="text-sm md:text-base flex items-center text-white py-2 px-3 font-bold">Premium<img
+                            src="../images/crown.png" alt="" class="size-5 md:size-7 mx-1"></h4>
+                </div>
+                <ion-icon onclick="onToggleMenu(this)" name="menu"
+                    class="z-50 text-3xl cursor-pointer md:hidden text-white"></ion-icon>
+            </div>
+        </nav>
+    </header>
+
+    <main class="z-1">
+
+        <div class="relative overflow-x-auto md:w-3/4 w-11/12  mt-10 lg:mx-48 md:mx-28 mx-4 rounded-t-3xl md:drop-shadow-2xl drop-shadow-xl">
+            <table id="leaderboard-table" class="w-full md:text-base text-sm text-white text-center">
+
+                <thead class="uppercase text-xs bg-[#154e49]">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 ">Sr.No.</th>
+                        <th scope="col" class="px-6 py-3 ">Name</th>
+                        <th scope="col" class="px-6 py-3 ">Total Expenses</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-table-body">
+
+                    <!-- <tr  class="list-group-item odd:bg-white even:bg-[#799e9b] text-[#154e49] font-semibold  border-b">
+                        <td>1</td>
+                        <td>komal</td>
+                        <td>1245</td>
+                    </tr> -->
+                    
+                </tbody>
+
+
+            </table>
+        </div>
+
+    </main>
+
+    <script src="../hamburger/hamburger.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>

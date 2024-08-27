@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' http://*  'unsafe-inline' 'unsafe-eval'" /> -->
+    <!-- <meta http-equiv="content-security-policy" content="default-src 'self'  https://api.razorpay.com 'unsafe-inline' 'unsafe-eval' ;">
+    <meta http-equiv="content-security-policy" content="default-src 'self' https://unpkg.com  https://cdnjs.cloudflare.com  https://checkout.razorpay.com 'unsafe-inline' 'unsafe-eval' ;"> -->
+    <link rel="stylesheet" href="../style.css">
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <title>Home</title>
+</head>
+
+<body>
+    <header class="bg-[#154e49] py-2">
+        <nav class="flex justify-between items-center w-[95%] mx-auto">
+            <div class="w-1/2 md:w-auto">
+                <a class="hover:underline text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
+                href="../dashboard/home.html">
+                <img src="../images/logo4.png" alt="Logo" class="lg:w-80 w-44">
+                </a>
+            </div>
+
+            <div id="slideover-bg" class="absolute inset-0 w-full h-full bg-gray-600 opacity-0 invisible"></div>
+
+            <div
+                class="hidden nav-links md:static absolute bg-[#154e49] md:min-h-fit min-h-[60vh] right-0 top-0 md:w-auto w-1/2 h-full md:flex items-center px-5">
+                <ul class="flex md:flex-row flex-col mt-20 md:mt-0 md:items-center lg:gap-16 gap-8">
+                    <li>
+                        <a class="hover:underline flex hover:scale-125 text-white  font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
+                            href="../dashboard/home.html">Home</a>
+                    </li>
+                    <li id="report-tab">
+                        <a class="hover:underline flex hover:scale-125 text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
+                            href="../report/report.html">Report <img src="../images/crown.png" alt="" class="size-5  ml-1"></a>
+                    </li>
+                    <li id="leaderboard-tab">
+                        <a class="hover:underline flex hover:scale-125 text-white font-semibold hover:text-[#FBB04B] active:text-[#FBB04B]"
+                            href="../leaderboard/leaderboard.html">LeaderBoard <img src="../images/crown.png" alt="" class="size-5  ml-1"></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button id="buy-btn"
+                    class="w-fit text-xs md:text-base flex text-[#154e49] py-2 px-3 rounded-full bg-white font-bold">Buy
+                    Premium
+                    <img src="../images/crown.png" alt="" class="size-5 md:size-7"></button>
+                    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                    
+                <div id="premium_memb" class="hidden">
+                    <h4  class="text-sm md:text-base flex items-center text-white py-2 px-3  rounded-full font-bold">Premium<img src="../images/crown.png" alt="" class="size-5 md:size-7 mx-1"></h4> 
+                </div>
+                <ion-icon onclick="onToggleMenu(this)" name="menu"
+                    class="z-50 text-3xl cursor-pointer md:hidden text-white"></ion-icon>
+            </div>
+        </nav>
+    </header>
+
+    <main class="z-1">
+        
+        <div class=" text-red-500 mx-24 md:mx-40 mt-10 font-bold text-sm md:text-base" id="msg"></div>
+        <div class="add-expense flex flex-col justify-center items-center overflow-hidden">
+
+            <form id="add-expense-form" 
+                class="flex md:items-center md:flex-row flex-col md:gap-20 gap-5 border-2 border-x-4 drop-shadow-lg rounded-lg border-[#154e49] py-3 px-10">
+                
+                
+                
+                <div class="flex items-center md:gap-3 gap-8">
+                    <label for="amount" class="text-[#154e49] after:content-['*'] after:ml-1 after:text-red-500  font-semibold md:font-bold  md:text-base text-sm">Amount</label>
+                    <input id="amount" class="text-[#154e49] bg-gray-50 border border-gray-200 rounded-md inline-block w-full"
+                        type="number">
+                </div>
+                <div class="flex items-center gap-3">
+                    <label for="description"
+                        class="text-[#154e49] after:content-['*'] after:ml-1 after:text-red-500  font-semibold md:font-bold  md:text-base text-sm">Description</label>
+                    <input id="description" class="text-[#154e49]  bg-gray-50 border border-gray-200 rounded-md inline-block w-full"
+                        type="text">
+                </div>
+                <div class="flex items-center md:gap-3 gap-7">
+                    <label for="category"
+                        class="text-[#154e49] after:content-['*'] after:ml-1 after:text-red-500  font-semibold md:font-bold  md:text-base text-sm">Category</label>
+                    <select id="category" class="text-[#154e49]  bg-gray-50 border border-gray-200 rounded-md inline-block w-full">
+                        <option  selected>Select</option>
+                        <option value="food">Food</option>
+                        <option value="fuel">Fuel</option>
+                        <option value="electircity">Electricity</option>
+                        <option value="fun">Fun</option>
+                        <option value="family">Family</option>
+                    </select>
+                </div>
+                <button type="submit"
+                    class="w-fit text-white py-2 px-4 rounded-full bg-[#154e49] font-semibold md:font-bold md:text-base text-sm">ADD</button>
+            </form>
+        </div>
+
+
+
+        <div id="rowsPerPage-div">
+            <form action="" id="rowsPerPage-form" class="mt-10">
+
+                <div
+                    class="relative max-w-xs md:drop-shadow-lg lg:mx-[9rem] md:mx-20 mx-10 flex space-x-2 items-center">
+                    <label for="rowsPerPage"
+                        class="text-[#154e49] font-semibold md:font-bold  md:text-base text-sm">Rows per Page</label>
+                    <select id="rowsPerPage" class="text-[#154e49]  bg-gray-50 border border-gray-200 rounded-md inline-block ">
+                        <option value="1" selected>10</option>
+                        <option value="2">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="50">60</option>
+                        <option value="50">70</option>
+                        <option value="50">80</option>
+                        <option value="50">90</option>
+                        <option value="50">100</option>
+                    </select>
+                    
+                </div>
+            </form>
+        </div>
+
+
+        <div id="expenses-list-div"
+            class="overflow-x-auto w-4/5  mt-5 lg:mx-[8.5rem] md:mx-20 mx-10 rounded-t-3xl drop-shadow-md ">
+
+            
+            <table id="expenses-list" class="w-full text-sm  text-white text-center">
+                <thead class="uppercase text-xs bg-[#154e49]">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Category</th>
+                        <th scope="col" class="px-6 py-3">Amount</th>
+                        <th scope="col" class="px-6 py-3">Description</th>
+                        <th scope="col" class="px-6 py-3">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="expenses-list-body">
+
+                    <!-- <tr class="list-group-item odd:bg-white even:bg-[#799e9b] text-[#154e49] font-semibold  border-b">
+                        <td>HOme</td>
+                    </tr> -->
+                    
+                </tbody>
+
+
+            </table>
+       
+            
+        </div>
+
+        <div id="pagination" class="flex mt-5 lg:mx-[8.5rem] md:mx-20 mx-10">
+            <!-- Buttons -->
+            <!-- <button class="px-2 h-8 text-sm font-medium text-white bg-[#154e49] hover:text-[#FBB04B] hover:underline rounded-full">
+                <svg class="w-3.5 h-3.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                  </svg>
+               
+            </button> -->
+            <!-- <button class="px-3 h-8 hover:scale-125 text-sm font-medium text-white bg-[#154e49] hover:text-[#FBB04B] hover:underline rounded-full">
+                1                 
+            </button> -->
+
+            <!-- <button class="px-2 h-8 text-sm font-medium text-white bg-[#154e49] hover:text-[#FBB04B]  hover:underline rounded-full">                 
+                <svg class="w-3.5 h-3.5  rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                  </svg>
+               
+            </button> -->
+        </div>
+
+        <div id="noExpenseRecords"  class="hidden relative w-fit  mt-10 drop-shadow-md text-[#154e49] font-bold md:text-2xl text-xl">
+            <h3 class="xl:ml-[33rem] lg:ml-[25rem] md:ml-72 ml-24">Records Not Available</h3>
+            </div>
+
+    </main>
+
+  
+<script src="../hamburger/hamburger.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="./main.js"></script>
+</body>
+
+</html>
