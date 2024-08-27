@@ -76,7 +76,11 @@ async function DomLoad() {
         const page = 1;
         localStorage.setItem('rowsPerPage',rowsPerPage.value);
         const rowsperpage=localStorage.getItem('rowsPerPage');
+<<<<<<< HEAD
         // console.log(rowsperpage);
+=======
+        console.log(rowsperpage);
+>>>>>>> bc6294ef6aa9034ebe0036bff907bc536dfef54a
         const decodedToken = parseJwt(token);
 
         if (decodedToken.ispremiumuser == true) {
@@ -249,7 +253,11 @@ async function buyPremium(e) {
     // const token=localStorage.getItem('token');
     const res = await axios.get('http://3.88.62.108:3000/buypremium', { headers: { 'Auth': token } });
 
+<<<<<<< HEAD
     // console.log(res.data);
+=======
+    console.log(res.data);
+>>>>>>> bc6294ef6aa9034ebe0036bff907bc536dfef54a
     var options = {
         "key": res.data.key_id,
         "order_id": res.data.order.id,

@@ -10,10 +10,17 @@ const leaderboard_table = document.getElementById("leaderboard-table-body");
 async function showLeaderBoard() {
 
     const token = localStorage.getItem('token');
+<<<<<<< HEAD
     // console.log(token);
     const result = await axios.get("http://3.88.62.108:3000/showleaderboard", { headers: { "Auth": token } })
 
     // console.log(result.data);
+=======
+    console.log(token);
+    const result = await axios.get("http://3.88.62.108:3000/showleaderboard", { headers: { "Auth": token } })
+
+    console.log(result.data);
+>>>>>>> bc6294ef6aa9034ebe0036bff907bc536dfef54a
 
     
 

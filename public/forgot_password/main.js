@@ -44,7 +44,11 @@ const forgot_form = document.getElementById('forgot-form');
                     forgot_error.removeChild(forgot_error.firstChild);
                 }, 2000);
 
+<<<<<<< HEAD
                 // console.log(err.message);
+=======
+                console.log(err.message);
+>>>>>>> bc6294ef6aa9034ebe0036bff907bc536dfef54a
                 forgot_form.reset();
 
             }

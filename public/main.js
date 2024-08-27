@@ -76,7 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     login_error.removeChild(login_error.firstChild);
                 }, 2000);
 
+<<<<<<< HEAD
                 // console.log(err.response.data.message);
+=======
+                console.log(err.response.data.message);
+>>>>>>> bc6294ef6aa9034ebe0036bff907bc536dfef54a
                 login_form.reset();
 
             }
@@ -118,10 +122,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     password: signup_password.value
                 };
 
+<<<<<<< HEAD
                 // console.log(User)
                 const result = await axios.post("http://3.88.62.108:3000/signup", User);
                 signup_form.reset();
                 // console.log(result);
+=======
+                console.log(User)
+                const result = await axios.post("http://3.88.62.108:3000/signup", User);
+                signup_form.reset();
+                console.log(result);
+>>>>>>> bc6294ef6aa9034ebe0036bff907bc536dfef54a
                 
                 alert( ` ${result.data.message}`);
                 document.getElementById('btn-login-panel').click();
